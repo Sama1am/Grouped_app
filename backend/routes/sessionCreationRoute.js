@@ -15,17 +15,19 @@ sessionCreation.post("/createSession", async function (req, res) {
         console.log(req.body);
         let sessionID = req.body.sessionCode;
         let moduleName = req.body.moduleName;
+        let maxGroupMembers = req.body.maxGroupMembers;
 
         //CHECK THIS!!!
         const insertQuery = `
-            INSERT INTO SESSIONS(session_name, active, session_code) 
-            VALUES (@session_name, @active, @session_code)
+            INSERT INTO SESSIONS(session_name, active, session_code, max_group_members) 
+            VALUES (@session_name, @active, @session_code, @max_group_members)
         `;
        
         result = await db.excuteQuery(insertQuery, {
             session_name: moduleName,
             active: 1,
-            session_code: sessionID
+            session_code: sessionID,
+            max_group_members: maxGroupMembers
         });
     }
     catch(err)
@@ -64,22 +66,23 @@ async function setActiveBit(code, activeBit){
     try
     {
         console.log("WE HIT HERE IN SETTING BIT")
-        let sessionCode = code;
+        let roomCode = code;
         let bit = activeBit;
 
         const insertQuery =
         "UPDATE SESSIONS SET active = @active WHERE session_code = @sessionCode ";
 
         result = await db.excuteQuery(insertQuery, {
-            sessionCode: sessionCode,
+            sessionCode: roomCode,
             active: bit
         });
+
         console.log("WE HIT HERE IN SETTING BIT")
         console.log(result);
     }
     catch (err)
     {
-        console.log("on error occured when changing role: " + err);
+        console.log("on error occured when setting  bit: " + err);
     }
 }
 

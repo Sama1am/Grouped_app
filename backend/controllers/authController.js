@@ -1,5 +1,7 @@
 const db = require("./dbController");
 
+
+
 function isAuthenticated(req, res, next) {
     if (req.user) {
       // User is authenticated, proceed to the next middleware or route handler
@@ -7,7 +9,7 @@ function isAuthenticated(req, res, next) {
     } else {
       // User is not authenticated, redirect to the main page
       //res.redirect('/login');
-      res.redirect('/login');
+      res.redirect(process.env.REACT_APP_APILINK);
     }
 }
 

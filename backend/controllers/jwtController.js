@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 let privateKey = null;
 let publicKey = null;
+let appURL = process.env.REACT_APP_APILINK
 
 const getToken = async (user, admin) => {
   if (privateKey === null) {
@@ -71,7 +72,7 @@ const getEmailFromToken = async (token) => {
       return decoded.email;
     }
   } catch (error) {
-    console.error("Token verification failed:", error);
+    console.error("GETTING EMAIL FROM TOKEN FAILED:", error);
     return false;
   }
   return false;
@@ -97,7 +98,7 @@ const getAdminFromToken = async (token) => {
       return decoded.admin;
     }
   } catch (error) {
-    console.error("Token verification failed:", error);
+    console.error("GETTING ADMIN FROM TOKEN FAILED:", error);
     return false;
   }
   return false;

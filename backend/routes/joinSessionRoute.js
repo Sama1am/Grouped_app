@@ -44,6 +44,43 @@ joinSession.post("/checkSession", async function (req, res) {
 
 });
 
+joinSession.get("/getMaxGroupMembers", async function(req, res){
+    let code = req.query.code
+    console.log(code);
+    try{
+        const query = "SELECT max_group_members FROM SESSIONS WHERE session_code = @session_code";
+
+        let result = await db.excuteQuery(query, {
+            session_code: code,
+        });
+
+        res.json(result[0]);
+        console.log("Max group number is: ", result[0]);
+    }
+    catch (e){
+        console.log(e);
+        res.status(500).json({ error: 'An error occurred while fetching data.' });
+    }
+})
+
+joinSession.get("/sessionName", async function(req, res){
+    let code = req.query.code
+    console.log(code);
+    try{
+        const query = "SELECT session_name FROM SESSIONS WHERE session_code = @session_code";
+
+        let result = await db.excuteQuery(query, {
+            session_code: code,
+        });
+
+        res.json(result[0]);
+        console.log("session name is: ", result[0]);
+    }
+    catch (e){
+        console.log(e);
+        res.status(500).json({ error: 'An error occurred while fetching data.' });
+    }
+})
 
 //CHECK THIS!!!!
 joinSession.post("/sessionResponse", async function(req, res) {

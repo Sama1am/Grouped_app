@@ -95,19 +95,16 @@ profileRoute.get("/getAdmin", jwt.authenticateToken, async function (req, res){
     try
     {
         let admin = req.user?.admin;
-        console.log("ADMIN VALUE IS: " + admin);
         
         if(admin === true)
         {
             //res.status(200).end();
             res.status(200).json({ isAdmin: true });
-            console.log("USER IS ADMIN");
         }
         else if(admin === false)
         {
             //res.status(404).end();
             res.status(200).json({ isAdmin: false });
-            console.log("USER IS NOT ADMIN");
         }
     }
     catch(e)
@@ -119,7 +116,6 @@ profileRoute.get("/getAdmin", jwt.authenticateToken, async function (req, res){
 profileRoute.get('/getEmail', jwt.authenticateToken, async function (req, res){
     try{
         let email = req.user?.email;
-        console.log("USERS EMAIL: " + email);
         res.json(email);
     }
     catch(e)
@@ -138,7 +134,6 @@ const getAdmin = async (email) => {
         });
         
         let adminValue = result[0].admin;
-        console.log("RESULT IS: " + adminValue)
         return adminValue;
     }
     catch (e){

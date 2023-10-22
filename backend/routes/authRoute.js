@@ -9,7 +9,7 @@ const jwt = require("../controllers/jwtController");
 const profile = require("../routes/profileRoute");
 
 authRouter.get('/', async function (req, res) {
-  //res.sendFile(path.join(__dirname, '../views/login.html'));
+  
 });
 
 authRouter.get('/google', passport.authenticate('google', { scope: ['email'] }));
