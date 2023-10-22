@@ -1,0 +1,8 @@
+.grey-rounded-button {
+    background-color: #666666; /* Grey background color */
+    color: #ffffff; /* Text color (white) */
+    border-radius: 20%; /* Rounded corners */
+    padding: 3% 3% 5% 5%; /* Padding for the button content */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    text-decoration: none;
+}
