@@ -13,11 +13,9 @@ function LoginButton() {
   };
 
   return (
-    // <button onClick={handleLogin}>Login with Google</button>
-
     <div class="d-grid gap-2 col-15 mx-auto">
-      <button class="btn btn-light btn-lg" type="button" onClick={handleLogin}>
-        <FcGoogle  style={{ marginRight: '8px' }}/>
+      <button class="btn btn-outline-secondary btn-lg" style= {{ boxShadow: '0 0 3px rgba(0, 0, 0, 0.2)' }} type="button" onClick={handleLogin}>
+        <FcGoogle size={25}  style={{ marginRight: '8px', background: 'transparent'}}/>
         Login with Google
       </button>
     </div>

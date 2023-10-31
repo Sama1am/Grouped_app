@@ -7,8 +7,8 @@ import { AdminContext } from '../../context/adminContext';
 import TagComponent from '../tagComponent/tagComponent';
 
 function PitchCreationTab(props) {
-    const { userEmail, setUserEmail, roles, isAdmin } = useContext(AdminContext);
-    const { addMyPitch, setMyPitch } = usePitchList();
+    const { userEmail, roles, isAdmin, userName } = useContext(AdminContext);
+    const { setMyPitch, myPitch } = usePitchList();
     const serverUrl = process.env.REACT_APP_APILINK;
     const [sessionCode, setSessionCode] = useState('');
     const [pitchName, setPitchName] = useState('');
@@ -21,14 +21,11 @@ function PitchCreationTab(props) {
     const [tempInput, setTempInput] = useState('')
 
     let key 
-    const members = [];
+    let members = [];
 
-    const [triggerValue, setTriggerValue] = useState(false);
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
 
-
-    const userName = localStorage.getItem('userName');
 
     const nameChange = (event) =>{
         setPitchName(event.target.value);
@@ -58,6 +55,7 @@ function PitchCreationTab(props) {
     };
 
     function handleReset(){
+        checkCssClass();
         setPitchName(''); 
         setPitchDisc('');
         setUserRole('');
@@ -65,9 +63,19 @@ function PitchCreationTab(props) {
         setRolesWanted([]);
     }
 
+    function checkCssClass(){
+        if(document.getElementById('pitchName').classList.contains('invalid')){
+            document.getElementById('pitchName').classList.remove('invalid');
+            document.getElementById('disc').classList.remove('invalid');
+            document.getElementById('roleSelector').classList.remove('invalid');
+            document.getElementById('roleWanted').classList.remove('invalid');
+        }
+    }
+
     function checkInputs(){
         if(isAdmin){
             if(pitchName === '' || pitchDisc === '' || rolesWanted.length === 0){
+                checkCssClass();
                 setPitchTriggerValue(true);
                 return 400;
             }
@@ -76,6 +84,10 @@ function PitchCreationTab(props) {
             }
         } else{
             if(pitchName === '' || pitchDisc === '' || userRole === '' || rolesWanted.length === 0){
+                document.getElementById('pitchName').classList.add('invalid');
+                document.getElementById('disc').classList.add('invalid');
+                document.getElementById('roleSelector').classList.add('invalid');
+                document.getElementById('roleWanted').classList.add('invalid');
                 setPitchTriggerValue(true);
                 return 400;
             }
@@ -96,11 +108,11 @@ function PitchCreationTab(props) {
 
     function createPitch(){
         
-        const res = checkInputs();
+        let res = checkInputs();
         console.log(res);
 
         if(!isAdmin){
-            const newMember = { email: userEmail, role: userRole, userName: userName };
+            let newMember = { email: userEmail, role: userRole, userName: userName };
             members.push(newMember);
         }
         
@@ -122,7 +134,8 @@ function PitchCreationTab(props) {
             }
             
             socket.emit('createPitch', picthData);
-            setMyPitch(1);
+            let temp = myPitch + 1
+            setMyPitch(temp);
             setPitchTriggerValue(false);
             handleReset();
 
@@ -168,102 +181,138 @@ function PitchCreationTab(props) {
     }
 
     return(props.trigger) ? (
-        <form class='needs-validation' 
-            style={{backgroundColor: '#F1EFEF', position: 'fixed', width: '28%', height: '95%', zIndex: '1000'}} novalidate> 
-            <section class="card" className='pitchCreationTab' style={{padding: '5%', alignSelf: 'center'}}>
-                <button type="button" class="btn-close" aria-label="Close" onClick={() => {props.setTrigger(false); handleReset()}}></button>
-                <section class="card-body" className="pitchInner">
+        <section className="pitchCreationComp"> 
+            <section class="card d-flex align-items-center" className="picthCard">
+                <section class='card-header col'>
                     <h1 style={{fontSize: '35px', textAlign: "center"}}>Create Pitch</h1>
-                    <br />
-                    <div class="mb-2" style={{width: '60%'}}>
-                        <label for="exampleInputEmail1 validationServer01" class="form-label">Name of pitch:</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1 validationServer01" aria-describedby="emailHelp" required
-                            value={pitchName}
-                            onChange={nameChange}
-                            placeholder="Pitch name.."/>
-                    </div>
-                    <br />
+                    <button
+                        type="button"
+                        className="btn-close btn-sml"
+                        aria-label="Close"
+                        onClick={() => {
+                        props.setTrigger(false);
+                        handleReset();
+                        }}
+                        style={{position: "absolute", top: "40px", right: "10px", }}></button>
+                </section>
+                    <br />        
+                <section class="card-body align-items-center col">
+                    <section class='row' id="name&role">
+                        <section class='col'>
+                            <div class="mb-1" style={{width: '75%'}}>
+                                <label class="form-label">Name of pitch:</label>
+                                <input type="text" class="form-control" id="pitchName" aria-describedby="emailHelp"
+                                    value={pitchName}
+                                    onChange={nameChange}
+                                    placeholder="Pitch name.."
+                                    style={{backgroundColor: '#F0F0F0'}}
+                                    />
 
-                    <div class="mb-2" style={{width: '60%'}}>
-                        <label for="exampleInputEmail1 validationServer01" class="form-label">Discription</label>
-                        <textarea  type="text" class="form-control" id="exampleInputEmail1 validationServer01" aria-describedby="emailHelp" required
+                            </div>
+                        </section>
+                        
+                        <section class='col'> 
+                            {isAdmin ? (null) : (
+                                <>
+                                    <label class="form-label">Select your Role:</label>
+                                    <select id="roleSelector"
+                                        style={{width: '75%', backgroundColor: '#F0F0F0'}}
+                                        class="form-select" 
+                                        aria-label="Default select example"
+                                        value={userRole}
+                                        onChange={(e) => {
+                                            setUserRole(e.target.value)
+                                        }}>
+                                        <option value="">Select your role</option>
+                                        {roles.map((role, index) => (
+                                            <option key={index} value={role.name}> 
+                                                {role.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </>
+                            )}
+                        </section>
+                    </section>
+                    
+                    <br />
+                    <div class="mb-2" style={{width: '88%'}}>
+                        <label class="form-label">Discription</label>
+                        <textarea  type="text" class="form-control" id="disc" aria-describedby="emailHelp"
                             value={pitchDisc}
                             onChange={pitchDiscChange}
-                            placeholder="Pitch discription..."/>
+                            placeholder="Pitch discription..." 
+                            style={{backgroundColor: '#F0F0F0'}}
+                            />
                     </div>
+                    
                     <br />
-                    {isAdmin ? (null) : (
-                        <>
-                            <label for="validationCustom04">Select your Role:</label>
-                            <select id="validationCustom04" required
-                                class="form-select" 
+
+                    <section className="row" id="Tag&Roles">
+                        <section className="col">
+                            <label class="form-label">Select roles wanted:</label>
+                            <select
+                                id="roleWanted"
+                                style={{ width: '75%', backgroundColor: '#F0F0F0' }}
+                                className="form-select"
                                 aria-label="Default select example"
-                                value={userRole}
+                                value={rolesWanted}
                                 onChange={(e) => {
-                                    setUserRole(e.target.value)
-                                }}>
-                                <option value="">Select your role</option>
-                                {roles.map((role, index) => (
-                                    <option key={index} value={role.name}> 
-                                        {role.name}
-                                    </option>
-                                ))}
+                                    setRolesWanted([...rolesWanted, e.target.value]);
+                                }}
+                            >
+                            <option value="">Select roles wanted</option>
+                            {roles.map((role, index) => (
+                                <option value={role.name} key={index}>
+                                {role.name}
+                                </option>
+                            ))}
                             </select>
-                        </>
-                    )}
-                    
+                            <section style={{ paddingTop: '1%' }}>
+                            {rolesWanted.map((role, index) => (
+                                <TagComponent key={index} data={role} event={() => deleteRolesTag(role)} />
+                            ))}
+                            </section>
+                        </section>
+
+                        <section className="col">
+                            <label class="form-label">Tags</label>
+                            <div className="input-group mb-3" style={{ width: '75%' }}>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="tags"
+                                aria-describedby="emailHelp"
+                                value={tempInput}
+                                style={{ width: '60%', backgroundColor: '#F0F0F0' }}
+                                onChange={(e) => {
+                                setTempInput(e.target.value);
+                                }}
+                                placeholder="Projects tags"
+                            />
+                            <button className="btn" style={{backgroundColor: '#B2C8BA'}} type="button" onClick={handleTagSubmit}>
+                                Add
+                            </button>
+                            </div>
+                            <section style={{ paddingTop: '1%' }}>
+                            {pitchTags.map((tag, index) => (
+                                <TagComponent key={index} data={tag} event={() => deleteTags(tag)} />
+                            ))}
+                            </section>
+                        </section>
+                    </section>
 
                     <br />
-
-                    <label for="validationCustom04">Select roles wanted:</label>
-                    <select id="validationCustom04" required
-                        style={{width: '60%'}}
-                        class="form-select"
-                        aria-label="Default select example"
-                        value={rolesWanted}
-                        onChange={(e) => {
-                            setRolesWanted([...rolesWanted, e.target.value]); // Use e.target.value
-                        }}
-                        >
-                        <option value="">Select roles wanted</option>
-                        {roles.map((role, index) => (
-                            <option value={role.name} key={index}>
-                            {role.name}
-                            </option>
-                        ))}
-                        
-                    </select>
-                    <section>
-                        {rolesWanted.map((role, index) => (
-                            <TagComponent key={index} data={role} event={() => deleteRolesTag(role)}/>
-                        ))}
+                    <section className="text-center" style={{paddingTop: '2%'}}>
+                        <button class= 'btn btn-outline-success center' 
+                            style={{width: '40%'}}
+                            onClick={() => {createPitch(); props.setTrigger(pitchTriggerValue);}}>Create</button>            
                     </section>
-                    <br />
-                    <label for="exampleInputEmail1 validationServer01" class="form-label">Tags</label>
-                    <div class="input-group mb-3" style={{width: '60%'}}>
-                        <input type="text" class="form-control" id="exampleInputEmail1 validationServer01" aria-describedby="emailHelp" required
-                            value={tempInput}
-                            onChange={(e) => {
-                                setTempInput(e.target.value)
-                            }}
-                            placeholder="Projects tags"/>
-                        <button class="btn btn-outline-dark" type="button" onClick={handleTagSubmit}>Submit tag</button>
-                    </div>
-                    <section>
-                        {pitchTags.map((tag, index) => (
-                            <TagComponent key={index} data={tag} event={() => deleteTags(tag)}/>
-                        ))}
-                    </section>
-                    
-                    <br />
-                    <button class= 'btn btn-outline-success' 
-                        style={{width: '65%'}}
-                        onClick={() => {createPitch(); props.setTrigger(pitchTriggerValue);}}>Create</button>
                     {[props.children]}
                 </section>
                 <br />
             </section>
-        </form>
+        </section>
     ) : "";
 }
 

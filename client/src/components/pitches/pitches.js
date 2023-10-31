@@ -5,10 +5,11 @@ import { AdminContext } from '../../context/adminContext';
 import PitchComponent from '../pitchComponent/pitchComponent';
 import { usePitchList } from '../../context/pitchContext'; 
 import { AiOutlinePlusCircle } from 'react-icons/ai';
+import './pitches.css';
 
 function Pitches(){
+    const { isAdmin,  userName} = useContext(AdminContext);
     const { pitchList, addPitch, myPitch, sessionName } = usePitchList();
-    const [triggerValue, setTriggerValue] = useState(true);
     const [createPicthState, setCreatePicthState] = useState(false);
     const [loading, setLoading] = useState(true);
    
@@ -37,10 +38,16 @@ function Pitches(){
 
     return(
         <>
-            <section id='Pitches'class="col align-items-center" 
-                style={{display: 'flex', alignItems: 'center', flexDirection: 'column', width: '100%', height: '100%'}}>
-                    <PitchCreationTab trigger ={createPicthState} setTrigger={setCreatePicthState} />
-                <h1 class='row' style={{paddingTop: '3%'}}>{sessionName}</h1>
+            <section id='Pitches'class="d-flex flex-column col align-items-center"  aria-hidden="true"
+                style={{display: 'flex', alignItems: 'center', flexDirection: 'column', width: '100%', height: "100vh"}}>
+                    <PitchCreationTab trigger ={createPicthState} setTrigger={setCreatePicthState} style={{height: '85%'}}/>
+                    {sessionName === '' ? (
+                        <h1 class="card-title placeholder-glow row" style={{paddingTop: '3%', width: '30%'}}>
+                            <span class="placeholder col-10"></span>
+                        </h1>
+                    ) : (
+                        <h1 class='row' style={{paddingTop: '3%'}}>{sessionName}</h1>
+                    )}
                 <br />
                 <section className='Main' style={{width: '75%'}}>
                     <section className='PitchesSection' id='picthSection' style={{height: '100%'}}>
@@ -58,7 +65,7 @@ function Pitches(){
                         </ul>
                     </section>
                     
-                    {myPitch >= 1 ? (null): (
+                    {isAdmin ? (
                         <section className='PitchButton' style={{position: 'fixed', bottom: '2%', right: '1%'}}>
                             <button class="btn btn-secondary p-2 rounded-circle btn-sm position-absolute bottom-0 end-0 justify-content-center align-items-center" 
                                 style={{ padding: "10px" }}
@@ -68,8 +75,21 @@ function Pitches(){
                                 <AiOutlinePlusCircle size={30}/> 
                             </button>
                         </section>
+                    ) :(
+                        <>
+                            {myPitch >= 1 ? (null): (
+                                <section className='PitchButton' style={{position: 'fixed', bottom: '2%', right: '1%', backgroundColor: '#899CFF'}}>
+                                    <button class="btn p-2 rounded-circle btn-sm position-absolute bottom-0 end-0 justify-content-center align-items-center" 
+                                        style={{ padding: "10px" }}
+                                        type="button" 
+                                        onClick={() => setCreatePicthState(true)}> 
+
+                                        <AiOutlinePlusCircle size={30}/> 
+                                    </button>
+                                </section>
+                            )}
+                        </>
                     )}
-                    
                 </section>
             </section>
         </>

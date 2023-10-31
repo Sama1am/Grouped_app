@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AdminContext } from '../../context/adminContext';
+import './profilePopUp.css'
 
 const ProfilePopUp = (props) => {
     //const { usePitchList } = usePitchList();
@@ -77,9 +78,21 @@ const ProfilePopUp = (props) => {
 
     }, [triggerValue, props.trigger, roles]);
 
+
+    function checkCSSClass(){
+        if(document.getElementById('NameInput').classList.contains('invalid')){
+            document.getElementById('NameInput').classList.remove('invalid')
+        }
+
+        if(document.getElementById('RoleSelector').classList.contains('invalid')){
+            document.getElementById('RoleSelector').classList.remove('invalid')
+        }
+    }
+
     async function createProfile(){
         if(name && selectedRole)
         {
+            checkCSSClass();
             setTriggerValue(false);
             sessionStorage.setItem('userName', name);
             sessionStorage.setItem('profileCreated', true);
@@ -88,23 +101,26 @@ const ProfilePopUp = (props) => {
         }
         else if (name === '' || selectedRole === ''){
             console.log("Input feilds are not full")
+            document.getElementById('NameInput').classList.add('invalid');
+            document.getElementById('RoleSelector').classList.add('invalid');
             setTriggerValue(true);
         }
     }
 
     return (props.trigger) ? (
         <>
-            <section  class="card position-absolute top-50 start-50 translate-middle align-middle" style={{ zIndex: '1001', width: '30%'}}>
+            <section  class="card position-absolute top-50 start-50 translate-middle align-middle" style={{ zIndex: '1001', width: '30%', boxShadow: '0 0 8px rgba(0, 0, 0, 0.3)'}}>
                 <section class="card-body mb-2">
                     <br />
                     <h1 class="text-center card-title" style={{ fontFamily: 'Gabarito' }}>Profile</h1>
 
                     <section class="mb-3">
                         <label for="validationServer01" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="validationServer01" required 
+                        <input type="text" class="form-control" id="NameInput"  
                             placeholder="Name"
                             value={name}
                             onChange={handleInputChange}
+                            required
                         />
                     </section>
                     
@@ -114,7 +130,7 @@ const ProfilePopUp = (props) => {
 
                         <section>
                             <label for="validationCustom04" class="form-label">Select a Role:</label>
-                            <select class="form-select" id="validationCustom04" required
+                            <select class="form-select" id="RoleSelector" required
                                 value={selectedRole}
                                 onChange={(e) => {
                                     const selectedIndex = e.target.selectedIndex;

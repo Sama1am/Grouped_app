@@ -1,19 +1,7 @@
-.loginPage{
-    background-color: #5F7161;
-    position: relative;
-    align-items: center;
-    align-content: center;
+.bodyColour{
+    background-color: #7f8b78;
 }
 
-
-.innerLoginPage{
-    position: absolute;
-    align-content: center;
-}
-
-h2{
-    justify-self: center;
-    font-size: 56px;
-    padding-top: 5%;
-    padding-bottom: 5%;
+.title{
+    font-size: 65px;
 }

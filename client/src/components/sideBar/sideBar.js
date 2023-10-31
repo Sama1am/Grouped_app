@@ -1,6 +1,6 @@
-import { React, useState, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { React, useContext } from "react";
 import { FiServer } from 'react-icons/fi'
+import { FaRegCheckCircle } from 'react-icons/fa';
 import { BsWindowDock, BsPeople } from 'react-icons/bs'
 import { socket } from "../../context/socketContext";
 import { AdminContext } from '../../context/adminContext';
@@ -18,8 +18,8 @@ function SideBar({ admin, setActiveComponent, roomCode, maxNumOfMembers, redirec
   
   return (
     <>
-    <section id='SideBar' class="d-flex flex-column flex-shrink-0 p-3 bg-light" 
-      style={{width: "19%", height: "100vh", position: "fixed", backgroundColor: '#9BA4B5'}}>
+    <section id='SideBar' class="d-flex flex-column flex-shrink-0 bg-light" 
+      style={{width: "19%", height: "100vh", position: "fixed", backgroundColor: 'white', padding: '2%'}}>
       <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
           <span class="fs-4" style={{ fontFamily: 'Gabarito', fontSize: '35px' }}>Grouped</span>
             </a>
@@ -34,23 +34,36 @@ function SideBar({ admin, setActiveComponent, roomCode, maxNumOfMembers, redirec
                 <li class="nav-item">
                       <button class="nav-link link-dark"
                         onClick={ () => setActiveComponent("userPitches") }>
-                          <BsWindowDock size={22} />  <span style={{ marginLeft: '5px'}}>My Pitches</span>
+                          <BsWindowDock size={22} />  <span style={{ marginLeft: '5px'}}>My Pitch</span>
                       </button>
                 </li>
                 {admin ? (
                   <li class="nav-item">
                     <button class="nav-link link-dark"
                       onClick={ () => setActiveComponent("approvePitches") }>
-                        <BsPeople size={22} />  <span style={{ marginLeft: '5px'}}>Approve Pitches</span>
+                        <FaRegCheckCircle size={22} />  <span style={{ marginLeft: '5px'}}>Approve Pitches</span>
                     </button>
                   </li>
-                ) : null }
+                ) : 
+                <li class="nav-item">
+                      <button class="nav-link link-dark"
+                        onClick={ () => setActiveComponent("myGroup") }>
+                          <BsPeople size={22} />  <span style={{ marginLeft: '5px'}}>My Group</span>
+                      </button>
+                </li> }
                 </ul>
 
                 <ul class="nav nav-pills flex-column mb-auto">
                   <hr></hr>
                   <a style={{fontSize: '20px'}}>Room code: {roomCode}</a>
-                  <a>Max group members: {maxNumOfMembers}</a>
+                  {maxNumOfMembers === undefined ? (
+                    <a class="card-title placeholder-glow">
+                      <span class="placeholder col-6"></span>
+                    </a>
+                  ) : (
+                    <a>Max group members: {maxNumOfMembers}</a>
+                  )}
+                  
                 </ul>
 
                   {admin ? (

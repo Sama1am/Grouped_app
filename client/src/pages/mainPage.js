@@ -1,6 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import '../styling/mainPage.css'
-import { Link } from 'react-router-dom';
 import Join from './joinSessionPage';
 import Create from './createSessionPage';
 import { AdminContext } from '../context/adminContext'
@@ -59,12 +57,6 @@ function Main(){
             }
     }
 
-    function checkToken(){
-        if(token === sessionStorage.getItem('accessToken')){
-            console.log("TOKENS ARE THE SAME!");
-        }
-    }
-
     async function getUserEmail(){
         const url = `${serverUrl}/profile/getEmail`;
         const token = sessionStorage.getItem('accessToken');
@@ -106,18 +98,20 @@ function Main(){
 
     return(
         <>
-            <section class="position-absolute top-50 start-50 translate-middle align-middle card" style={{boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)'}}>
-                <div class="card-body">
-                    <br />
-                    <h1 class="text-center card-title" style={{ fontFamily: 'Gabarito' }}>Grouped</h1>
-                    <br />
-                    <br />
-                    { isAdmin === true ? 
-                    <> <Create /> <br /><br /> <Join /> </> : 
-                    <Join /> 
-                    }
-                    <br />
-                </div>
+            <section>
+                <section class="position-absolute top-50 start-50 translate-middle align-middle card" style={{boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)'}}>
+                    <div class="card-body">
+                        <br />
+                        <h1 class="text-center card-title" style={{ fontFamily: 'Gabarito' }}>Grouped</h1>
+                        <br />
+                        <br />
+                        { isAdmin === true ? 
+                        <> <Create /> <br /><br /> <Join /> </> : 
+                        <Join /> 
+                        }
+                        <br />
+                    </div>
+                </section>
             </section>
         </>
         

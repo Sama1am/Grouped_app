@@ -52,6 +52,30 @@ const verifyToken = async (token) => {
   return false;
 };
 
+async function authenticateToken(req, res, next) {
+  // Get the JWT token from the request headers
+  const token = req.headers.authorization.split(' ')[1];
+  //console.log(token);
+  // Check if the token is not provided
+  if (!token) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+
+  // Verify and decode the JWT token
+  const info = await verifyToken(token)
+  if(token){
+      req.user = info;
+
+    // Continue to the next middleware or route handler
+    next();
+  }
+  else
+  {
+      return res.status(403).json({ message: 'Forbidden' });
+  }
+
+};
+
 const getEmailFromToken = async (token) => {
   if (publicKey === null) {
     publicKey = Buffer.from(process.env.PUBLICKEY, "base64").toString("ascii");
@@ -109,29 +133,5 @@ const generateJwtLink = (token) => {
   const link = `${process.env.EMAILLINK}/login?token=${encodedToken}`;
   return link;
 };
-
-async function authenticateToken(req, res, next) {
-    // Get the JWT token from the request headers
-    const token = req.headers.authorization.split(' ')[1];
-    //console.log(token);
-    // Check if the token is not provided
-    if (!token) {
-      return res.status(401).json({ message: 'Unauthorized' });
-    }
-  
-    // Verify and decode the JWT token
-    const info = await verifyToken(token)
-    if(token){
-        req.user = info;
-  
-      // Continue to the next middleware or route handler
-        next();
-    }
-    else
-    {
-        return res.status(403).json({ message: 'Forbidden' });
-    }
-  
-  }
 
 module.exports = { getToken, verifyToken, generateJwtLink, getEmailFromToken, authenticateToken, getAdminFromToken };

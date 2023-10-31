@@ -214,19 +214,21 @@ export function PitchListProvider({ children }) {
     });
   }
 
-  function deletePitch(key){
+  function deletePitch(key, room){
     setPitchList((prevPitchList) => {
       const updatedPitches = prevPitchList.filter((pitch) => pitch.key !== key);
       // Optionally, you can emit an event to notify the server or perform any other actions
-      console.log(`Pitch with key ${key} deleted.`);
-      socket.emit('deletePitch', key);
-      setMyPitch(0);
       return updatedPitches;
     });
+
+    console.log(`Pitch with key ${key} deleted.`);
+    socket.emit('deletePitch', key, room);
+    let temp = myPitch - 1;
+    setMyPitch(temp);
   }
 
   function updateDeletedPitch(key){
-    setPitchList((prevPitchList) => {
+    setPitchList(prevPitchList => {
       const updatedPitches = prevPitchList.filter((pitch) => pitch.key !== key);
       // Optionally, you can emit an event to notify the server or perform any other actions
       console.log(`Pitch with key ${key} deleted.`);

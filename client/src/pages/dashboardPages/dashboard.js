@@ -10,6 +10,7 @@ import SideBar from '../../components/sideBar/sideBar';
 import Pitches from '../../components/pitches/pitches';
 import UsersPitches from '../../components/usersPitches/usersPitches';
 import ApprovePitch from '../../components/approvePitches/approvePitches';
+import MyGroup from '../../components/myGroup/myGroup';
 
 function Dashboard() {
     const { addPitch, 
@@ -17,15 +18,14 @@ function Dashboard() {
         updatePitch, 
         updateApprovedPitch,  
         maxNumOfMembers, 
-        resetPitchList, 
-        deletePitch, 
+        resetPitchList,  
         updateDeletedPitch,
         setMaxNumOfMembers,
         setSessionName,
         sessionName
     } = usePitchList();
 
-    const { isAdmin, setIsAdmin, roomCodeC, setRoomCodeC, userEmail, setUserEmail, setRoles, roles, userName} = useContext(AdminContext);
+    const { isAdmin, setIsAdmin, roomCodeC, setRoomCodeC, userEmail, setUserEmail, setRoles, roles} = useContext(AdminContext);
     const serverUrl = process.env.REACT_APP_APILINK;
     const baseUrl = window.location.origin;
     const [roomCode, setRoomCode] = useState('');
@@ -232,6 +232,7 @@ function Dashboard() {
 
         socket.on('redirectUrl', (redirectRoute) => {
             resetPitchList();
+            //sessionStorage.clear();
             window.location.href = redirectRoute;
         });
 
@@ -284,65 +285,77 @@ function Dashboard() {
         socket.emit('endSession', roomCode, redirectRoute, 0);
     }
     
-    async function sessionBit(){
-        const url = `${serverUrl}/session/setActive`;
-        const postData = {
-            sessionCode: roomCode, 
-            bit: 0
-        };
+    // async function sessionBit(){
+    //     const url = `${serverUrl}/session/setActive`;
+    //     const postData = {
+    //         sessionCode: roomCode, 
+    //         bit: 0
+    //     };
     
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json', // Set the content type if needed
-            },
-            body: JSON.stringify(postData),
-        };
+    //     const requestOptions = {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json', // Set the content type if needed
+    //         },
+    //         body: JSON.stringify(postData),
+    //     };
     
-        const data =  await fetch(url, requestOptions)
-        console.log( await data.json());
-    }
+    //     const data =  await fetch(url, requestOptions)
+    //     console.log( await data.json());
+    // }
 
-    function adminAlert (){
-        if(isAdmin){
+    function adminAlert() {
+        if (isAdmin) {
+            // This flag indicates whether the page is being refreshed
+            let isRefreshing = false;
+    
+            // Listen for the beforeunload event
             window.addEventListener("beforeunload", function (e) {
-                // Display a confirmation message
-                var confirmationMessage = "Are you sure you want to end the session?";
-                (e || window.event).returnValue = confirmationMessage; // For legacy browsers
-                return confirmationMessage; // For modern browsers
+                // Check if the page is being refreshed
+                if (!isRefreshing) {
+                    // Display a confirmation message
+                    var confirmationMessage = "Are you sure you want to end the session?";
+                    (e || window.event).returnValue = confirmationMessage; // For legacy browsers
+                    return confirmationMessage; // For modern browsers
+                }
             });
     
-            window.onunload =  function(){
-                closeRoom();
-            }
+            // Listen for the beforeunload event when the page is refreshed
+            window.addEventListener("unload", function () {
+                // Set the refreshing flag to true when the page is refreshed
+                isRefreshing = true;
+            });
+    
+            window.onunload = function () {
+                if (!isRefreshing) {
+                    closeRoom();
+                }
+            };
         }
-       
     }
-
-    function sendEmail(){
-        socket.emit('sendEmail');
-    }
-
-    window.addEventListener('beforeunload', function (event) {
-       console.log("page was refreshed!");
-    });
+    
+    // function sendEmail(){
+    //     socket.emit('sendEmail');
+    // }
 
     return(
         <>
         <section style={{width: '100%'}}>
             <section class="row" style={{width: '100%'}}>
-                <section class='col-md-3'>
+                <section class='col-md-2'>
                     <SideBar admin={isAdmin} setActiveComponent={setActiveComponent} 
                         roomCode={roomCodeC} maxNumOfMembers={maxNumOfMembers} redirectRoute={redirectRoute}/>
                 </section>
-                <main class='col-md-9'>
+                <main class='col-md-10' style={{backgroundColor: '#EFF2FB'}}>
                     { isAdmin === false ? <ProfilePopUp trigger= {profileState} setTrigger={setProfileState}></ProfilePopUp> : null}
 
                     {activeComponent === "pitches" && <Pitches name={sessionName}/>}
                     {activeComponent === "userPitches" && <UsersPitches />}
                     {isAdmin ? (
                         activeComponent === "approvePitches" && <ApprovePitch />
-                    ) : (null)}
+                    ) : (
+                        activeComponent === "myGroup" && <MyGroup /> 
+                    )}
                 </main>
             </section>
         </section>

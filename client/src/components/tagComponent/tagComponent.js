@@ -1,14 +1,18 @@
 import './tag.css'
-import { RxCrossCircled } from 'react-icons/rx'
+import { RxCross1 } from 'react-icons/rx'
 
 function TagComponent({data, event}){
     return(
         <>
-            <a  class="badge rounded-pill text-bg-secondary" style={{padding: '2%'}}>
-                {data}
-                <button style={{padding: '5%', backgroundColor: 'transparent', border: 'none', color: 'white'}} onClick={event}>
-                    <RxCrossCircled />
-                </button>
+            <a class="badge rounded-pill" style={{padding: '1.5%', textDecoration: 'none', backgroundColor: '#0174BE', marginLeft: '3%'}}>
+                <section>
+                    {data}
+                    <button style={{backgroundColor: 'transparent', border: 'none', color: 'white'}} onClick={event}>
+                        <RxCross1 size={15}/>
+                    </button>
+
+                </section>
+                
             </a>
         </>
     )

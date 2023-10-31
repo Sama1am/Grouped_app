@@ -32,9 +32,8 @@ authRouter.get('/google/callback', passport.authenticate('google', { failureRedi
     try
     {
       let admin = await profile.getAdmin(userInfo.email);
-      console.log("ADMIN: " + admin);
       const token = await jwt.getToken(userInfo.email, admin);
-
+      console.log("GOT TOKEM: ", token);
       res.redirect(redirectUrl + "?token=" + token);
     }
     catch (e)

@@ -153,8 +153,9 @@ io.on("connect", (socket) => {
   socket.on('sendAdminEmail', (email, room) => {
     try{
       const roomPitches = pitchRoute.getPitches(room);
-    
-      let pitchInfo =  roomPitches.map((pitch) => ({
+      const approvedPitches = roomPitches.filter(pitch => pitch.status === 'Approved');
+
+      let pitchInfo =  approvedPitches.map((pitch) => ({
         name: pitch.name,
         disc: pitch.disc,
         members: pitch.groupMembers.map((member) => `${member.userName} role: ${member.role} email: ${member.email}`)
@@ -182,6 +183,7 @@ io.on("connect", (socket) => {
   socket.on('endSession', (roomName, redirectRoute, bit) => {
     console.log("SOCKET CLOSING ROOM");
     pitchRoute.removePitchesFromRoom(roomName);
+    console.log(pitchRoute.pitches);
     const room = io.sockets.adapter.rooms.get(roomName);
     console.log(bit);
     sessionCreation.setActiveBit(roomName, bit);

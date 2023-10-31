@@ -4,8 +4,10 @@ import { BiRadioCircle } from 'react-icons/bi'
 function Tag2Component({data}){
     return(
         <>
-            <section style={{padding:'0.5%'}}>
-                <a  class="badge rounded-pill text-bg-secondary" style={{textDecoration: 'none', padding: '1%'}}>
+            <section style={{padding:'1%'}}>
+                <a  class="badge rounded-pill" 
+                    style={{textDecoration: 'none', margin: '5%', 
+                        backgroundColor: '#E2E7FF', color: 'black'}}>
                     <BiRadioCircle /> {data}
                 </a>
             </section>

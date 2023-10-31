@@ -66,7 +66,7 @@ INSERT INTO [dbo].[ROLES]
 		   ('Artist')
 GO
 
-SELECT * FROM SESSIONS
+SELECT * FROM USERS
 GO
 
 ALTER TABLE SESSIONS
@@ -81,4 +81,7 @@ GO
 UPDATE USERS
 SET admin = 0 
 WHERE email = '2344023@students.wits.ac.za';
+GO
+
+DROP DATABASE [GroupedApp]
 GO

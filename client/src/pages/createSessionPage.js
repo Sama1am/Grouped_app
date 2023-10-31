@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext  } from 'react';
+import React, { useState } from 'react';
 import { usePitchList } from '../context/pitchContext'; 
-import { socket } from '../context/socketContext';
+import './MainPage.module.css'
 
 function Create(){
     const { maxNumOfMembers, setMaxNumOfMembers } = usePitchList();
@@ -49,10 +49,15 @@ function Create(){
 
     function checkInputs(){
         if(SessionName === '' || maxNumOfMembers === undefined){
-            console.log(SessionName);
-            console.log(maxNumOfMembers);
+            document.getElementById('name').classList.add('invalid');
+            document.getElementById('select').classList.add('invalid');
             console.log("inputs are empty");
         }else{
+            if(document.getElementById('name').classList.contains('invalid')){
+                document.getElementById('name').classList.remove('invalid');
+                document.getElementById('select').classList.remove('invalid');
+            }
+
             joinWithMultipleActions();
         }
     }
@@ -74,6 +79,7 @@ function Create(){
                
                 <div class="input-group mb-3 needs-validation" noValidate>
                     <input 
+                        id='name'
                         type="text" 
                         style={{ fontFamily: 'Gabarito' }}
                         class="form-control" placeholder="Enter session name" aria-label="Recipient's username" aria-describedby="button-addon2"
@@ -82,6 +88,7 @@ function Create(){
                     />
                     <br />
                     <select 
+                            id='select'
                             class="form-select" 
                             aria-label="Default select example"
                             value={maxNumOfMembers}
