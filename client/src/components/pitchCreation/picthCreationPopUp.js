@@ -182,8 +182,8 @@ function PitchCreationTab(props) {
 
     return(props.trigger) ? (
         <section className="pitchCreationComp"> 
-            <section class="card d-flex align-items-center" className="picthCard">
-                <section class='card-header col'>
+            <section class="card d-flex justify-content-center align-items-center col" className="picthCard">
+                <section class='card-header row'>
                     <h1 style={{fontSize: '35px', textAlign: "center"}}>Create Pitch</h1>
                     <button
                         type="button"
@@ -196,7 +196,7 @@ function PitchCreationTab(props) {
                         style={{position: "absolute", top: "40px", right: "10px", }}></button>
                 </section>
                     <br />        
-                <section class="card-body align-items-center col">
+                <section id="mainContent" class="card-body align-items-center justify-content-center col">
                     <section class='row' id="name&role">
                         <section class='col'>
                             <div class="mb-1" style={{width: '75%'}}>
@@ -205,7 +205,7 @@ function PitchCreationTab(props) {
                                     value={pitchName}
                                     onChange={nameChange}
                                     placeholder="Pitch name.."
-                                    style={{backgroundColor: '#F0F0F0'}}
+                                    style={{backgroundColor: '#E8F0FE'}}
                                     />
 
                             </div>
@@ -216,7 +216,7 @@ function PitchCreationTab(props) {
                                 <>
                                     <label class="form-label">Select your Role:</label>
                                     <select id="roleSelector"
-                                        style={{width: '75%', backgroundColor: '#F0F0F0'}}
+                                        style={{width: '75%', backgroundColor: '#E8F0FE'}}
                                         class="form-select" 
                                         aria-label="Default select example"
                                         value={userRole}
@@ -236,13 +236,13 @@ function PitchCreationTab(props) {
                     </section>
                     
                     <br />
-                    <div class="mb-2" style={{width: '88%'}}>
+                    <div class="" style={{width: '88%'}}>
                         <label class="form-label">Discription</label>
                         <textarea  type="text" class="form-control" id="disc" aria-describedby="emailHelp"
                             value={pitchDisc}
                             onChange={pitchDiscChange}
                             placeholder="Pitch discription..." 
-                            style={{backgroundColor: '#F0F0F0'}}
+                            style={{backgroundColor: '#E8F0FE'}}
                             />
                     </div>
                     
@@ -253,7 +253,7 @@ function PitchCreationTab(props) {
                             <label class="form-label">Select roles wanted:</label>
                             <select
                                 id="roleWanted"
-                                style={{ width: '75%', backgroundColor: '#F0F0F0' }}
+                                style={{ width: '75%', backgroundColor: '#E8F0FE' }}
                                 className="form-select"
                                 aria-label="Default select example"
                                 value={rolesWanted}
@@ -269,9 +269,9 @@ function PitchCreationTab(props) {
                             ))}
                             </select>
                             <section style={{ paddingTop: '1%' }}>
-                            {rolesWanted.map((role, index) => (
-                                <TagComponent key={index} data={role} event={() => deleteRolesTag(role)} />
-                            ))}
+                                {rolesWanted.map((role, index) => (
+                                    <TagComponent key={index} data={role} event={() => deleteRolesTag(role)} />
+                                ))}
                             </section>
                         </section>
 
@@ -282,31 +282,28 @@ function PitchCreationTab(props) {
                                 type="text"
                                 className="form-control"
                                 id="tags"
-                                aria-describedby="emailHelp"
                                 value={tempInput}
-                                style={{ width: '60%', backgroundColor: '#F0F0F0' }}
+                                style={{ width: '60%', backgroundColor: '#E8F0FE' }}
                                 onChange={(e) => {
                                 setTempInput(e.target.value);
                                 }}
                                 placeholder="Projects tags"
                             />
-                            <button className="btn" style={{backgroundColor: '#B2C8BA'}} type="button" onClick={handleTagSubmit}>
+                            <button className="btn" style={{backgroundColor: '#8A9CFF', color: 'white'}} type="button" onClick={handleTagSubmit}>
                                 Add
                             </button>
                             </div>
                             <section style={{ paddingTop: '1%' }}>
-                            {pitchTags.map((tag, index) => (
-                                <TagComponent key={index} data={tag} event={() => deleteTags(tag)} />
-                            ))}
+                                {pitchTags.map((tag, index) => (
+                                    <TagComponent key={index} data={tag} event={() => deleteTags(tag)} />
+                                ))}
                             </section>
                         </section>
                     </section>
 
                     <br />
-                    <section className="text-center" style={{paddingTop: '2%'}}>
-                        <button class= 'btn btn-outline-success center' 
-                            style={{width: '40%'}}
-                            onClick={() => {createPitch(); props.setTrigger(pitchTriggerValue);}}>Create</button>            
+                    <section class="row justify-content-center align-items-center" style={{ paddingTop: '2%', textAlign: 'center' }}>
+                        <button class="button-pitch" style={{ width: '40%' }} onClick={() => { createPitch(); props.setTrigger(pitchTriggerValue); }}>Create</button>
                     </section>
                     {[props.children]}
                 </section>

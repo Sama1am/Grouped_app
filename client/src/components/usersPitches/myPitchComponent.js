@@ -4,6 +4,8 @@ import { GrUserWorker } from 'react-icons/gr'
 import { ImBin } from 'react-icons/im'
 import { usePitchList } from '../../context/pitchContext'; 
 import { AdminContext } from '../../context/adminContext';
+import Tag2Component from '../tagComponent/tags2Component';
+import './myPitch.css'
 
 function MyPitchComp(data, room){
     const { deletePitch } = usePitchList();
@@ -17,7 +19,8 @@ function MyPitchComp(data, room){
                     <hr />
                     <div class="card-body">
                         <p class="card-text">{data.data.disc}</p>
-                    </div>
+                    </div> 
+
                     <ul class="list-group list-group-flush">
                         <ul class="list-group">
                             <li class="list-group-item" aria-current="true" style={{fontWeight: 'bold', backgroundColor: '#E2E7FF'}}>Members:</li>
@@ -35,7 +38,7 @@ function MyPitchComp(data, room){
                     </ul>
                     <br />
                     <section>
-                        <button type="button" class="btn btn-outline-secondary" style={{width: '100%', alignSelf: 'center'}} onClick={() => {deletePitch(data.data.key, roomCodeC)}}>
+                        <button type="button" className='button-myPitch' style={{alignSelf: 'center'}} onClick={() => {deletePitch(data.data.key, roomCodeC)}}>
                             <ImBin />
                         </button>            
                     </section>

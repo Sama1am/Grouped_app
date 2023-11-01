@@ -26,7 +26,7 @@ function PitchComponent({index, data}) {
 
     return (
         <>
-            <section class='container-md' style={{height: '100%', padding: '3%'}}>
+            <section class='col' style={{height: '100%', width: '90%', padding: '2%'}}>
                 <section class="card col" style={{width: '100%', padding: '2%', boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)'}}>
                     <section style={{width: '100%'}}>
                         <section style={{ display: 'flex', fontFamily: 'Gabarito', fontWeight: 'bold', fontSize: 'large' }}>
@@ -58,11 +58,9 @@ function PitchComponent({index, data}) {
                                     ))}
                                 </section>
                             </section>   
-                        </section>
+                        </section>      
+                    </section>
 
-                            
-                    </section>        
-                    
                     <section style={{width: '100%'}}>
                         <ul class="list-group">
                                 <li class="list-group-item card-header" aria-current="true" style={{fontWeight: 'bold', backgroundColor: '#E2E7FF'}}>Members: </li>

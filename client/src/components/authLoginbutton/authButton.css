@@ -1,0 +1,42 @@
+
+/* CSS */
+.button-login {
+  align-items: center;
+  background-color: #f0f3ff;
+  border: 1px solid #DFDFDF;
+  border-radius: 16px;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  font-size: 18px;
+  justify-content: center;
+  line-height: 28px;
+  max-width: 100%;
+  padding: 14px 22px;
+  text-decoration: none;
+  transition: all .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+}
+
+.button-login:active,
+.button-login:hover {
+  outline: 0;
+  background-color: rgba(255, 255, 255, 0.26);
+}
+
+.button-login:hover {
+  background-color: #899dff94;
+  border-color: rgba(0, 0, 0, 0.19);
+}
+
+@media (min-width: 768px) {
+  .button-login {
+    font-size: 20px;
+    min-width: 200px;
+    padding: 14px 16px;
+  }
+}

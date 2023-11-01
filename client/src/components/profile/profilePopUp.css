@@ -22,3 +22,100 @@
 .invalid{
     border-color: red;
 }
+
+.button-profile {
+    align-items: center;
+    background-color: #8A9CFF;
+    border: 1px solid #DFDFDF;
+    border-radius: 16px;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    font-size: 18px;
+    justify-content: center;
+    line-height: 25px;
+    max-width: 50%;
+    padding: 5px 5px;
+    text-decoration: none;
+    transition: all .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
+  }
+  
+  .button-profile:active,
+  .button-profile:hover {
+    outline: 0;
+    background-color: rgba(255, 255, 255, 0.26);
+  }
+  
+  .button-profile:hover {
+    background-color: #899dff94;
+    border-color: rgba(0, 0, 0, 0.19);
+  }
+  
+  @media (min-width: 768px) {
+    .button-profile {
+      font-size: 18px;
+      min-width: 200px;
+      padding: 5px 5px;
+    }
+  }
+
+.bg-backgroun{
+    z-index: 1000;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: #E7EAFB;
+    overflow: hidden;
+    opacity: .7;
+}
+
+
+.bg-shape{
+    width: 520px;
+    height: 520px;
+    border-radius: 9999px;
+    z-index: -1;
+}
+
+.bg-shape-sml{
+    width: 300px;
+    height: 300px;
+    border-radius: 9999px;
+    z-index: -1;
+}
+
+.opcaity{
+    opacity: .5;
+}
+
+.bg-blur{
+    filter: blur(80px);
+}
+
+.bg-one{
+    background-color: #899CFF;
+}
+
+.bg-two{
+    background-color: #ACC18A;
+}
+
+.top-right-corner {
+    z-index: 0;
+    position: absolute;
+    top: -200px;
+    right: -225px;
+}
+
+.bottom-right-corner {
+    z-index: 0;
+    position: absolute;
+    top: 200px;
+    right: 225px;
+}

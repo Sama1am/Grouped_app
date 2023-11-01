@@ -1,3 +1,55 @@
 .invalid{
     border-color: red;
 }
+
+.logo{
+    padding: 1%;
+    height: 100%;
+    width: 50px;
+    align-self: center;
+    transition: width 0.3s ease;
+}
+
+.bg-shape{
+    width: 520px;
+    height: 520px;
+    border-radius: 9999px;
+    z-index: -1;
+}
+
+.bg-shape-sml{
+    width: 300px;
+    height: 300px;
+    border-radius: 9999px;
+    z-index: -1;
+}
+
+.opcaity{
+    opacity: .5;
+}
+
+.bg-blur{
+    filter: blur(80px);
+}
+
+.bg-one{
+    background-color: #899CFF;
+}
+
+.bg-two{
+    background-color: #ACC18A;
+}
+
+.top-right-corner {
+    z-index: 0;
+    position: absolute;
+    top: -200px;
+    right: -225px;
+}
+
+.bottom-right-corner {
+    z-index: 0;
+    position: absolute;
+    top: 200px;
+    right: 225px;
+}

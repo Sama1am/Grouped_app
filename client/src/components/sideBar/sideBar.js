@@ -4,7 +4,7 @@ import { FaRegCheckCircle } from 'react-icons/fa';
 import { BsWindowDock, BsPeople } from 'react-icons/bs'
 import { socket } from "../../context/socketContext";
 import { AdminContext } from '../../context/adminContext';
-
+import './sideBar.css'
 
 function SideBar({ admin, setActiveComponent, roomCode, maxNumOfMembers, redirectRoute}) {
   const { userEmail } = useContext(AdminContext);
@@ -18,10 +18,10 @@ function SideBar({ admin, setActiveComponent, roomCode, maxNumOfMembers, redirec
   
   return (
     <>
-    <section id='SideBar' class="d-flex flex-column flex-shrink-0 bg-light" 
-      style={{width: "19%", height: "100vh", position: "fixed", backgroundColor: 'white', padding: '2%'}}>
+    <section id='SideBar' class="d-flex flex-column flex-shrink-0" 
+      style={{width: "19%", height: "100vh", position: "fixed", backgroundColor: 'white', padding: '1.5%'}}>
       <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-          <span class="fs-4" style={{ fontFamily: 'Gabarito', fontSize: '35px' }}>Grouped</span>
+          <span class="fs-4" style={{ fontFamily: 'Gabarito', fontSize: '40px' }}>Grouped</span>
             </a>
             <hr></hr>
                 <ul class="nav nav-underline flex-column mb-auto">
@@ -68,11 +68,10 @@ function SideBar({ admin, setActiveComponent, roomCode, maxNumOfMembers, redirec
 
                   {admin ? (
                     <section class="align-items-center" style={{alignItems: 'center', width: '90%', paddingBottom: '5%'}}>
-                      <button class="btn btn-outline-success col btn-sm" style={{width: '100%'}}
+                      <button class="col" className='button-46 button-normal' style={{width: '100%'}}
                         onClick={generatePdf}>Generate group list</button>
                       <br />
-                      <br />
-                      <button class="btn btn-outline-danger col btn-sm" style={{width: '100%'}}
+                      <button class="col" className='button-46 button-red' style={{width: '100%'}}
                         onClick={endSession}>End session</button>
                     </section>
                   ) : null}

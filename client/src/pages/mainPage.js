@@ -36,12 +36,14 @@ function Main(){
                 {
                     console.log("from server: " + data.isAdmin);
                     await setIsAdmin(true);
+                    sessionStorage.setItem('admin', true);
                     console.log("from context:" + isAdmin);
                 }
                 else if(data.isAdmin === false)
                 {
                     console.log("from server: " + data.isAdmin);
                     await setIsAdmin(false);
+                    sessionStorage.setItem('admin', false);
                     console.log("from context:" + isAdmin);
                 }
                 else if(response.status === 500){
@@ -87,6 +89,7 @@ function Main(){
         if(isAdmin === undefined)
         {
             getAdmin(token);
+            
         }
 
         if(userEmail === '')
@@ -98,10 +101,20 @@ function Main(){
 
     return(
         <>
+            <section style={{justifyContent: 'center', position: 'absolute', width: '100%', height: '100vh', backgroundColor: '#E7EAFB', overflow: 'hidden'}}>
+                <section className='bg-shape opcaity bg-blur bg-one'></section>''
+                <section className='bg-shape opcaity bg-blur bg-two' style={{textAlign: 'center'}}></section>
+                <section className='bg-shape-sml opcaity bg-blur bg-two top-right-corner'></section>
+                <section className='bg-shape-sml opcaity bg-blur bg-one bottom-right-corner'></section>
+            </section>
+
             <section>
-                <section class="position-absolute top-50 start-50 translate-middle align-middle card" style={{boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)'}}>
+                <section class="position-absolute top-50 start-50 translate-middle align-middle card" style={{boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)', padding: '1%'}}>
                     <div class="card-body">
                         <br />
+                        <section style={{textAlign: 'center'}}>
+                            <img src="/logo_grouped.png" alt="My Logo" className='logo'/>
+                        </section>
                         <h1 class="text-center card-title" style={{ fontFamily: 'Gabarito' }}>Grouped</h1>
                         <br />
                         <br />
@@ -110,8 +123,11 @@ function Main(){
                         <Join /> 
                         }
                         <br />
+                        <button onClick={() =>{console.log(sessionStorage.getItem('admin'))}}>admin</button>
                     </div>
                 </section>
+
+                
             </section>
         </>
         

@@ -109,53 +109,66 @@ const ProfilePopUp = (props) => {
 
     return (props.trigger) ? (
         <>
-            <section  class="card position-absolute top-50 start-50 translate-middle align-middle" style={{ zIndex: '1001', width: '30%', boxShadow: '0 0 8px rgba(0, 0, 0, 0.3)'}}>
-                <section class="card-body mb-2">
-                    <br />
-                    <h1 class="text-center card-title" style={{ fontFamily: 'Gabarito' }}>Profile</h1>
-
-                    <section class="mb-3">
-                        <label for="validationServer01" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="NameInput"  
-                            placeholder="Name"
-                            value={name}
-                            onChange={handleInputChange}
-                            required
-                        />
-                    </section>
-                    
-                        <br />
-                        <br />
-
-
-                        <section>
-                            <label for="validationCustom04" class="form-label">Select a Role:</label>
-                            <select class="form-select" id="RoleSelector" required
-                                value={selectedRole}
-                                onChange={(e) => {
-                                    const selectedIndex = e.target.selectedIndex;
-                                    setSelectedRoleIndex(selectedIndex);
-                                    setSelectedRole(e.target.value)
-                            }}>
-
-                                <option value="">Select a role</option>
-                                {roles.map((role, index) => (
-                                    <option key={index} value={role.id}>
-                                        {role.name}
-                                    </option>
-                                ))}
-                            </select>
-                        </section>
-
-                        <br />
-                        <br />
-                    <section class="text-center">
-                        <button class="btn btn-primary" type="submit" onClick={() => {createProfile(); props.setTrigger(triggerValue);}}>Create</button>
-                    </section>
-                    {props.children}
+            <section>
+                <section className='bg-backgroun' id='background'>
+                    <section className='bg-shape opcaity bg-blur bg-one'></section>
+                    <section className='bg-shape opcaity bg-blur bg-two' style={{textAlign: 'center'}}></section>
+                    <section className='bg-shape-sml opcaity bg-blur bg-two top-right-corner'></section>
+                    <section className='bg-shape-sml opcaity bg-blur bg-one bottom-right-corner'></section>
                 </section>
-                <br />
-            </section >
+
+                <section style={{width: '100vh'}}>
+                    <section  class="card position-absolute top-50 start-50 translate-middle align-middle" style={{ zIndex: '1001', width: '30%', boxShadow: '0 0 8px rgba(0, 0, 0, 0.3)'}}>
+                        <section class="card-body mb-2">
+                            <br />
+                            <h1 class="text-center card-title" style={{ fontFamily: 'Gabarito' }}>Profile</h1>
+
+                            <section class="mb-3">
+                                <label for="validationServer01" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="NameInput"  
+                                    placeholder="Name"
+                                    value={name}
+                                    onChange={handleInputChange}
+                                    required
+                                    style={{backgroundColor: '#E8F0FE'}}
+                                />
+                            </section>
+                            
+                                <br />
+                                <br />
+
+
+                                <section>
+                                    <label for="validationCustom04" class="form-label">Select a Role:</label>
+                                    <select class="form-select" id="RoleSelector" required
+                                        value={selectedRole}
+                                        style={{backgroundColor: '#E8F0FE'}}
+                                        onChange={(e) => {
+                                            const selectedIndex = e.target.selectedIndex;
+                                            setSelectedRoleIndex(selectedIndex);
+                                            setSelectedRole(e.target.value)
+                                    }}>
+
+                                        <option value="">Select a role</option>
+                                        {roles.map((role, index) => (
+                                            <option key={index} value={role.id}>
+                                                {role.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </section>
+
+                                <br />
+                                <br />
+                                <section className="d-flex justify-content-center align-items-center">
+                                    <button className="button-profile" type="submit" onClick={() => { createProfile(); props.setTrigger(triggerValue); }}>Create</button>
+                                </section>
+                            {props.children}
+                        </section>
+                        <br />
+                    </section >
+                </section>
+            </section>
         </>
     ) : null;
 }

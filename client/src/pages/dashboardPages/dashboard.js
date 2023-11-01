@@ -221,8 +221,6 @@ function Dashboard() {
             setProfileState(false); // Don't trigger the ProfilePopUp
         }
 
-        adminAlert();
-
     }, [token, roles, pitchList]);
 
     useEffect(() =>{
@@ -249,6 +247,7 @@ function Dashboard() {
         };
 
     }, [socket])
+
 
     function approvePitchesHandler(data){
         updateApprovedPitch(data);
@@ -285,24 +284,6 @@ function Dashboard() {
         socket.emit('endSession', roomCode, redirectRoute, 0);
     }
     
-    // async function sessionBit(){
-    //     const url = `${serverUrl}/session/setActive`;
-    //     const postData = {
-    //         sessionCode: roomCode, 
-    //         bit: 0
-    //     };
-    
-    //     const requestOptions = {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json', // Set the content type if needed
-    //         },
-    //         body: JSON.stringify(postData),
-    //     };
-    
-    //     const data =  await fetch(url, requestOptions)
-    //     console.log( await data.json());
-    // }
 
     function adminAlert() {
         if (isAdmin) {
@@ -334,31 +315,26 @@ function Dashboard() {
         }
     }
     
-    // function sendEmail(){
-    //     socket.emit('sendEmail');
-    // }
-
+   
     return(
         <>
-        <section style={{width: '100%'}}>
-            <section class="row" style={{width: '100%'}}>
-                <section class='col-md-2'>
-                    <SideBar admin={isAdmin} setActiveComponent={setActiveComponent} 
-                        roomCode={roomCodeC} maxNumOfMembers={maxNumOfMembers} redirectRoute={redirectRoute}/>
+           <section style={{ width: '100%', height: '100%' }}>
+                <section class="row" style={{ width: '100%', height: '100%' }}>
+                    {isAdmin === false ? <ProfilePopUp trigger={profileState} setTrigger={setProfileState} /> : null}
+                    <div class="col-md-2">
+                        <SideBar admin={isAdmin} setActiveComponent={setActiveComponent} roomCode={roomCodeC} maxNumOfMembers={maxNumOfMembers} redirectRoute={redirectRoute} />
+                    </div>
+                    <div class="col-md-10" style={{ backgroundColor: '#EFF2FB', overflow: 'auto'}}>
+                        {activeComponent === "pitches" && <Pitches name={sessionName} />}
+                        {activeComponent === "userPitches" && <UsersPitches />}
+                        {isAdmin ? (
+                            activeComponent === "approvePitches" && <ApprovePitch />
+                        ) : (
+                            activeComponent === "myGroup" && <MyGroup />
+                        )}
+                    </div>
                 </section>
-                <main class='col-md-10' style={{backgroundColor: '#EFF2FB'}}>
-                    { isAdmin === false ? <ProfilePopUp trigger= {profileState} setTrigger={setProfileState}></ProfilePopUp> : null}
-
-                    {activeComponent === "pitches" && <Pitches name={sessionName}/>}
-                    {activeComponent === "userPitches" && <UsersPitches />}
-                    {isAdmin ? (
-                        activeComponent === "approvePitches" && <ApprovePitch />
-                    ) : (
-                        activeComponent === "myGroup" && <MyGroup /> 
-                    )}
-                </main>
             </section>
-        </section>
         </>
     )
 }

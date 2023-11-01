@@ -48,10 +48,9 @@ function Pitches(){
                     ) : (
                         <h1 class='row' style={{paddingTop: '3%'}}>{sessionName}</h1>
                     )}
-                <br />
-                <section className='Main' style={{width: '75%'}}>
-                    <section className='PitchesSection' id='picthSection' style={{height: '100%'}}>
-                        <ul>
+                <section class="d-flex flex-column col align-items-center" className='Main' style={{width: '90%', padding: '1%'}}>
+                    <section class="align-items-center" id='picthSection' style={{width: '90%', height: '100%'}}>
+                        <section>
                             {pitchList.length === 0 ? (
                                 <p>No pitches available.</p>
                             ) : (
@@ -62,29 +61,29 @@ function Pitches(){
                                 />
                             ))
                             )}
-                        </ul>
+                        </section>
                     </section>
                     
                     {isAdmin ? (
                         <section className='PitchButton' style={{position: 'fixed', bottom: '2%', right: '1%'}}>
                             <button class="btn btn-secondary p-2 rounded-circle btn-sm position-absolute bottom-0 end-0 justify-content-center align-items-center" 
-                                style={{ padding: "10px" }}
+                                style={{ padding: "10px", backgroundColor: '#636363' }}
                                 type="button" 
                                 onClick={() => setCreatePicthState(true)}> 
 
-                                <AiOutlinePlusCircle size={30}/> 
+                                <AiOutlinePlusCircle size={30} color='white'/> 
                             </button>
                         </section>
                     ) :(
                         <>
                             {myPitch >= 1 ? (null): (
-                                <section className='PitchButton' style={{position: 'fixed', bottom: '2%', right: '1%', backgroundColor: '#899CFF'}}>
-                                    <button class="btn p-2 rounded-circle btn-sm position-absolute bottom-0 end-0 justify-content-center align-items-center" 
-                                        style={{ padding: "10px" }}
+                                <section style={{position: 'fixed', bottom: '2%', right: '1%'}}>
+                                    <button class="position-absolute bottom-0 end-0 justify-content-center align-items-center" 
+                                        className='create-pitchbtn'
                                         type="button" 
                                         onClick={() => setCreatePicthState(true)}> 
 
-                                        <AiOutlinePlusCircle size={30}/> 
+                                        <AiOutlinePlusCircle size={30} color='white'/> 
                                     </button>
                                 </section>
                             )}

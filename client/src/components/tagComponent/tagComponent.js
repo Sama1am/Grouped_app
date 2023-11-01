@@ -4,10 +4,10 @@ import { RxCross1 } from 'react-icons/rx'
 function TagComponent({data, event}){
     return(
         <>
-            <a class="badge rounded-pill" style={{padding: '1.5%', textDecoration: 'none', backgroundColor: '#0174BE', marginLeft: '3%'}}>
+            <a className='pill'>
                 <section>
                     {data}
-                    <button style={{backgroundColor: 'transparent', border: 'none', color: 'white'}} onClick={event}>
+                    <button style={{backgroundColor: 'transparent', border: 'none', color: 'black'}} onClick={event}>
                         <RxCross1 size={15}/>
                     </button>
 

@@ -104,7 +104,7 @@ function Create(){
                         </select>
 
                             
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" style={{ fontFamily: 'Gabarito' }}
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" style={{ fontFamily: 'Gabarito', backgroundColor: '#E2E7FF' }}
                         onClick={checkInputs}>
                             Create session
                     </button>

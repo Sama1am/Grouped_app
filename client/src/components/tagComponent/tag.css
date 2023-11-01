@@ -6,3 +6,22 @@
     cursor: pointer; /* Add a pointer cursor on hover */
     text-decoration: none;
 }
+
+.pill {
+    background-color: #acc18aae;
+    border: solid;
+    border-color: #90a276;
+    font-size: 13px;
+    color: black;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 21px;
+    margin: 2%;
+}
+
+.pill:hover{
+    background-color: #cadcae8d;
+}

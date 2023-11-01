@@ -4,6 +4,7 @@ import { BsFillPersonXFill, BsFillPersonFill } from 'react-icons/bs'
 import { usePitchList } from '../../context/pitchContext'; 
 import { AdminContext } from '../../context/adminContext';
 import  ApprovedComp  from '../approvePitches/approvedCheck'
+import './myGroup.css';
 
 function MyGroupComp(data, room){
     const { removeGroupMember } = usePitchList();
@@ -46,9 +47,12 @@ function MyGroupComp(data, room){
                         </ul>
                     </ul>
                     <br />
-                    <button type="button" class="btn btn-danger" onClick={removeSelf}>
-                        <BsFillPersonXFill size={22}/>
-                    </button>
+                    {data.data.status === 'Approved'? (null) : (
+                        <button type="button" className='button-myGroup' onClick={removeSelf}>
+                            <BsFillPersonXFill size={22}/> <a style={{marginLeft: '8px'}}>Leave group</a>
+                        </button>
+                    )}
+                    
                 </section>
             </section>                
         </>

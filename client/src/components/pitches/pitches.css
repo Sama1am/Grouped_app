@@ -5,3 +5,15 @@
     height: 100%;
 }
 
+
+.create-pitchbtn{
+    border-radius: 100%;
+    background-color: #8A9CFF;
+    border: 1px solid #DFDFDF;
+    padding: 10px;
+}
+
+.create-pitchbtn:hover{
+    background-color: #899dff94
+}
+
