@@ -5,6 +5,8 @@ import { FiUserCheck } from 'react-icons/fi'
 import { usePitchList } from '../../context/pitchContext'; 
 import { AdminContext } from '../../context/adminContext';
 import { socket } from '../../context/socketContext'
+import './approvePitch.css';
+
 
 function ApprovePitchComponent(data){
     const { approvePitch, removeGroupMember  } = usePitchList();
@@ -36,7 +38,7 @@ function ApprovePitchComponent(data){
     return(
 
         <>
-            <section style={{width: '65%', boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)'}}> 
+            <section style={{width: '70%', boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)'}}> 
                 <section class="card" style={{padding: '3%'}}>
                     <section>
                         <h5 
@@ -76,17 +78,24 @@ function ApprovePitchComponent(data){
                         </section>
                         
                     </section>
+                    <br />
                     {data.data.status === 'Approved' ? (null) : (
-                        <section style={{textAlign: 'center', padding: '1%', width: '100%'}}>
-                            <button type="button" class="btn btn-outline-success" onClick={approve}
-                                style={{padding: '1%', marginRight: '10px'}}>
-                                    <FiUserCheck /> Approve
-                            </button>
-    
-                            <button type="button" class="btn btn-outline-danger" onClick={deny}
-                                style={{padding: '1%', marginLeft: '10px'}}>
-                                    <FiUserCheck /> Deny
-                            </button>
+                        <section class='row d-flex justify-content-center align-items-center' style={{textAlign: 'center', padding: '1%', width: '100%'}}>
+                            <section class='col-5 d-flex justify-content-center align-items-center'> 
+                                <button type="button" onClick={approve}
+                                    className='button-approve button-normal'
+                                    style={{padding: '1%'}}>
+                                        <FiUserCheck style={{marginRight: '5px'}}/> Approve
+                                </button>
+                            </section>
+
+                            <section class='col-5 d-flex justify-content-center align-items-center'> 
+                                <button type="button" onClick={deny}
+                                    className='button-approve button-red'
+                                    style={{padding: '1%'}}>
+                                        <FiUserCheck style={{marginRight: '5px'}}/> Deny
+                                </button>
+                            </section>
                         </section>
                     )}
                    

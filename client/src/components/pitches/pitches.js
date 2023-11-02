@@ -39,57 +39,58 @@ function Pitches(){
     return(
         <>
             <section id='Pitches'class="d-flex flex-column col align-items-center"  aria-hidden="true"
-                style={{display: 'flex', alignItems: 'center', flexDirection: 'column', width: '100%', height: "100vh"}}>
+                style={{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
                     <PitchCreationTab trigger ={createPicthState} setTrigger={setCreatePicthState} style={{height: '85%'}}/>
-                    {sessionName === '' ? (
-                        <h1 class="card-title placeholder-glow row" style={{paddingTop: '3%', width: '30%'}}>
-                            <span class="placeholder col-10"></span>
-                        </h1>
-                    ) : (
-                        <h1 class='row' style={{paddingTop: '3%'}}>{sessionName}</h1>
-                    )}
-                <section class="d-flex flex-column col align-items-center" className='Main' style={{width: '90%', padding: '1%'}}>
-                    <section class="align-items-center" id='picthSection' style={{width: '90%', height: '100%'}}>
-                        <section>
+
+                    <section class='row'>
+                        {sessionName === '' ? (
+                            <h1 class="card-title placeholder-glow row" style={{paddingTop: '3%', width: '30%'}}>
+                                <span class="placeholder col-10"></span>
+                            </h1>
+                        ) : (
+                            <h1 class='row' style={{paddingTop: '3%'}}>{sessionName}</h1>
+                        )}
+                    </section>
+                    
+                    <section class="row d-flex flex-column align-items-center" className='Main' style={{ width: '100%', padding: '1%' }}>
+                        <section id='pitchSection' class="col-8 mx-auto" style={{ width: '70%', height: '100%' }}>
                             {pitchList.length === 0 ? (
-                                <p>No pitches available.</p>
+                            <p class="text-center">No pitches available.</p>
                             ) : (
                             pitchList.map((pitchData, index) => (
-                                <PitchComponent 
-                                    key={index} 
-                                    data={pitchData}
+                                <PitchComponent
+                                key={index}
+                                data={pitchData}
                                 />
                             ))
                             )}
                         </section>
                     </section>
-                    
-                    {isAdmin ? (
-                        <section className='PitchButton' style={{position: 'fixed', bottom: '2%', right: '1%'}}>
-                            <button class="btn btn-secondary p-2 rounded-circle btn-sm position-absolute bottom-0 end-0 justify-content-center align-items-center" 
-                                style={{ padding: "10px", backgroundColor: '#636363' }}
+                
+                {isAdmin ? (
+                        <section class="col align-self-end justify-content-end" className='PitchButton' style={{position: 'fixed', bottom: '2%', right: '1%'}}>
+                            <button class="p-2 position-absolute bottom-0 end-0" 
+                                className='create-pitchbtn'
                                 type="button" 
                                 onClick={() => setCreatePicthState(true)}> 
-
                                 <AiOutlinePlusCircle size={30} color='white'/> 
                             </button>
                         </section>
-                    ) :(
+                    ) : (
                         <>
-                            {myPitch >= 1 ? (null): (
-                                <section style={{position: 'fixed', bottom: '2%', right: '1%'}}>
-                                    <button class="position-absolute bottom-0 end-0 justify-content-center align-items-center" 
-                                        className='create-pitchbtn'
-                                        type="button" 
-                                        onClick={() => setCreatePicthState(true)}> 
-
-                                        <AiOutlinePlusCircle size={30} color='white'/> 
-                                    </button>
-                                </section>
-                            )}
+                        {myPitch >= 1 ? (null) : (
+                            <section class="col align-self-end justify-content-end" style={{position: 'fixed', bottom: '2%', right: '1%'}}>
+                                <button class="p-2 position-absolute bottom-0 end-0" 
+                                    className='create-pitchbtn'
+                                    type="button" 
+                                    onClick={() => setCreatePicthState(true)}> 
+                                    <AiOutlinePlusCircle size={30} color='white'/> 
+                                </button>
+                            </section>
+                        )}
                         </>
                     )}
-                </section>
+
             </section>
         </>
     )

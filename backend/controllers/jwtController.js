@@ -35,7 +35,7 @@ const verifyToken = async (token) => {
     issuer: "grouped",
     subject: "Auth",
     audience: "user",
-    expiresIn: "1h",
+    expiresIn: "2h",
     algorithm: ["RS256"],
   };
 

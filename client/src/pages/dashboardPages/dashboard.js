@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { socket } from '../../context/socketContext';
 import { AdminContext } from '../../context/adminContext';
 import { usePitchList } from '../../context/pitchContext'; 
+import '../login/loginPage.css';
 
 //components 
 import ProfilePopUp from '../../components/profile/profileComponent';
@@ -37,7 +38,7 @@ function Dashboard() {
     const [profileState, setProfileState] = useState(true);
     const [activeComponent, setActiveComponent] = useState("pitches");
 
-    const redirectRoute = `${baseUrl}/main`;
+    const redirectRoute = `${baseUrl}`;
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const token = sessionStorage.getItem('accessToken');
@@ -318,21 +319,24 @@ function Dashboard() {
    
     return(
         <>
-           <section style={{ width: '100%', height: '100%' }}>
+           <section style={{ width: '100%', height: '100%', backgroundColor: '#EFF2FB'}}>
                 <section class="row" style={{ width: '100%', height: '100%' }}>
                     {isAdmin === false ? <ProfilePopUp trigger={profileState} setTrigger={setProfileState} /> : null}
-                    <div class="col-md-2">
+                    <section class="col-2">
                         <SideBar admin={isAdmin} setActiveComponent={setActiveComponent} roomCode={roomCodeC} maxNumOfMembers={maxNumOfMembers} redirectRoute={redirectRoute} />
-                    </div>
-                    <div class="col-md-10" style={{ backgroundColor: '#EFF2FB', overflow: 'auto'}}>
-                        {activeComponent === "pitches" && <Pitches name={sessionName} />}
-                        {activeComponent === "userPitches" && <UsersPitches />}
-                        {isAdmin ? (
-                            activeComponent === "approvePitches" && <ApprovePitch />
-                        ) : (
-                            activeComponent === "myGroup" && <MyGroup />
-                        )}
-                    </div>
+                    </section>
+                    <section class="col-10" style={{height: '100vh', overflow: 'auto'}}>
+                        <section style={{width: '100%', height: '100%', padding:'2%'}}>
+                            {activeComponent === "pitches" && <Pitches name={sessionName} />}
+                            {activeComponent === "userPitches" && <UsersPitches />}
+                            {isAdmin ? (
+                                activeComponent === "approvePitches" && <ApprovePitch />
+                            ) : (
+                                activeComponent === "myGroup" && <MyGroup />
+                            )}
+                        </section>
+                        
+                    </section>
                 </section>
             </section>
         </>

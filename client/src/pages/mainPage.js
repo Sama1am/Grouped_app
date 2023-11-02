@@ -88,7 +88,12 @@ function Main(){
     useEffect(() => {
         if(isAdmin === undefined)
         {
-            getAdmin(token);
+            if(sessionStorage.getItem('admin')){
+                setIsAdmin(sessionStorage.getItem('admin'));
+            }else{
+                getAdmin(token);
+            }
+            
             
         }
 
@@ -108,27 +113,33 @@ function Main(){
                 <section className='bg-shape-sml opcaity bg-blur bg-one bottom-right-corner'></section>
             </section>
 
-            <section>
-                <section class="position-absolute top-50 start-50 translate-middle align-middle card" style={{boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)', padding: '1%'}}>
-                    <div class="card-body">
-                        <br />
-                        <section style={{textAlign: 'center'}}>
-                            <img src="/logo_grouped.png" alt="My Logo" className='logo'/>
-                        </section>
-                        <h1 class="text-center card-title" style={{ fontFamily: 'Gabarito' }}>Grouped</h1>
-                        <br />
-                        <br />
-                        { isAdmin === true ? 
-                        <> <Create /> <br /><br /> <Join /> </> : 
-                        <Join /> 
-                        }
-                        <br />
-                        <button onClick={() =>{console.log(sessionStorage.getItem('admin'))}}>admin</button>
-                    </div>
-                </section>
+            {isAdmin === undefined ? (
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            ) : (
+                <section>
+                    <section class="position-absolute top-50 start-50 translate-middle align-middle card" style={{boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)', padding: '1%'}}>
+                        <div class="card-body">
+                                <br />
+                            <section style={{textAlign: 'center'}}>
+                                <img src="/logo_grouped.png" alt="My Logo" className='logo'/>
+                            </section>
+                            <h1 class="text-center card-title" style={{ fontFamily: 'Gabarito' }}>Grouped</h1>
+                                <br />
+                                <br />
+                            { isAdmin === true ? 
+                            <> <Create /> <br /><br /> <Join /> </> : 
+                            <Join /> 
+                            }
+                                <br />
+                        </div>
+                    </section>
 
                 
-            </section>
+                </section>        
+            )}
+            
         </>
         
     );

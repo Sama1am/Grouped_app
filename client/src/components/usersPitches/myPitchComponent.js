@@ -37,10 +37,12 @@ function MyPitchComp(data, room){
                         </ul>
                     </ul>
                     <br />
-                    <section>
-                        <button type="button" className='button-myPitch' style={{alignSelf: 'center'}} onClick={() => {deletePitch(data.data.key, roomCodeC)}}>
-                            <ImBin />
-                        </button>            
+                    <section class='row d-flex justify-content-center align-items-center'>
+                        <section class='col-5'>
+                            <button type="button" className='button-myPitch' style={{alignSelf: 'center'}} onClick={() => {deletePitch(data.data.key, roomCodeC)}}>
+                                <ImBin />
+                            </button>
+                        </section>        
                     </section>
                     
                 </section>

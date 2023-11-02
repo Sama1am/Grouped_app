@@ -26,7 +26,7 @@ function PitchComponent({index, data}) {
 
     return (
         <>
-            <section class='col' style={{height: '100%', width: '90%', padding: '2%'}}>
+            <section class='col d-flex justify-content-center align-items-center' style={{height: '100%', width: '100%', padding: '2%'}}>
                 <section class="card col" style={{width: '100%', padding: '2%', boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)'}}>
                     <section style={{width: '100%'}}>
                         <section style={{ display: 'flex', fontFamily: 'Gabarito', fontWeight: 'bold', fontSize: 'large' }}>

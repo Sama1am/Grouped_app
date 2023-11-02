@@ -11,7 +11,7 @@ function MyGroup(){
     return(
         <>
            <section class="col" 
-                style={{display: 'flex', alignItems: 'center', flexDirection: 'column', width: '100%', height: "100vh"}}>
+                style={{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
                 <h1 style={{paddingTop: '3%'}}> My Group</h1>
                 <br />
                 <section class='align-items-center' 
