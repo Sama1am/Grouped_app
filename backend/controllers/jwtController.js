@@ -58,6 +58,7 @@ async function authenticateToken(req, res, next) {
   //console.log(token);
   // Check if the token is not provided
   if (!token) {
+    res.redirect(env.process.REACT_APP_APILINK );
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
