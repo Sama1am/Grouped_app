@@ -19,7 +19,7 @@ authRouter.get('/google/callback', passport.authenticate('google', { failureRedi
     // This function will be called when the user has authenticated successfully
     // You can access the user's profile data in `req.user`
     console.log('We got here');
-    const redirectUrl = req.query.redirectUrl || 'http://localhost:3000/main';
+    const redirectUrl = req.query.redirectUrl;
     const userInfo = {
         email: req?.user.emails[0].value,
         name: req?.user.displayName ? req?.user.displayName: req?.user.emails[0].value,
