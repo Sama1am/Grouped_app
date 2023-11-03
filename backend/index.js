@@ -15,12 +15,14 @@ const credentials = require('./credentials.json');
 const db = require('./controllers/dbController');
 
 const port = process.env.PORT || 4000;
+const frontend = process.env.REACT_APP_APILINK;
+
 
 app.use(bodyParser.json({ limit: "100mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: frontend,
   credentials: true,
   optionSuccessStatus: 200,
 };
@@ -31,7 +33,7 @@ app.use(cors());
 passport.use(new OAuth2Strategy({
     clientID: '777349805734-rf0n1qn4ltvgnrr9387hcusshupd0an1.apps.googleusercontent.com',
     clientSecret: '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',
-    callbackURL: 'http://localhost:4000/auth/google/callback', 
+    callbackURL: 'https://groupedappbackend.onrender.com/auth/google/callback', 
   }, async (accessToken, refreshToken, profile, done) => {
     //const email = profile.emails[0].value;
     // Store the email in your database or perform any other action
@@ -92,7 +94,7 @@ server.listen(port, () => {
 
 const io = socketIo(server,{
   cors: {
-    origin: 'http://localhost:3000',
+    origin: frontend, //'http://localhost:3000'
   }
 });
 
