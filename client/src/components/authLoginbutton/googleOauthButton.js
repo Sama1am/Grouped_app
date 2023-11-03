@@ -10,8 +10,8 @@ function LoginButton() {
   console.log(serverUrl);
 
   const handleLogin = async() => {
-    const redirectUrl = encodeURIComponent(`${baseUrl}/main`);
-    window.location.href = `${serverUrl}/auth/google?redirectUrl=${redirectUrl}`;
+    //const redirectUrl = encodeURIComponent(`${baseUrl}/main`);
+    window.location.href = `${serverUrl}/auth/google`; //`${serverUrl}/auth/google?redirectUrl=${redirectUrl}`
   };
 
   return (

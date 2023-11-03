@@ -198,8 +198,8 @@ function PitchCreationTab(props) {
                     <br />        
                 <section id="mainContent" class="card-body align-items-center justify-content-center col">
                     <section class='row justify-content-center align-items-center' id="name&role">
-                        <section class='col-5'>
-                            <div style={{width: '80%'}}>
+                        <section class='col-6'>
+                            <div style={{width: '100%'}}>
                                 <label class="form-label">Name of pitch:</label>
                                 <input type="text" class="form-control" id="pitchName" aria-describedby="emailHelp"
                                     value={pitchName}
@@ -211,12 +211,12 @@ function PitchCreationTab(props) {
                             </div>
                         </section>
                         
-                        <section class='col-5'> 
+                        <section class='col-6'> 
                             {isAdmin ? (null) : (
                                 <>
                                     <label class="form-label">Select your Role:</label>
                                     <select id="roleSelector"
-                                        style={{width: '80%', backgroundColor: '#E8F0FE'}}
+                                        style={{width: '100%', backgroundColor: '#E8F0FE'}}
                                         class="form-select" 
                                         aria-label="Default select example"
                                         value={userRole}
@@ -237,7 +237,7 @@ function PitchCreationTab(props) {
                     
                     <br />
                     <section class="row justify-content-center align-items-center" style={{width: '100%'}}>
-                        <section class='col-10'>
+                        <section style={{width: '100%'}}>
                             <label class="form-label">Discription</label>
                             <textarea  type="text" class="form-control" id="disc" aria-describedby="emailHelp"
                                 value={pitchDisc}
@@ -252,61 +252,61 @@ function PitchCreationTab(props) {
                     <br />
 
                     <section className="row justify-content-center align-items-center" id="Tag&Roles">
-                        <section className="col-5">
-                            <label class="form-label">Select roles wanted:</label>
+                        <section className="col-6">
+                            <label className="form-label">Select roles wanted:</label>
                             <select
                                 id="roleWanted"
-                                style={{ width: '80%', backgroundColor: '#E8F0FE' }}
-                                className="form-select"
+                                style={{ width: '100%', backgroundColor: '#E8F0FE' }}
+                                className="form-select d-flex input-group justify-content-end"
                                 aria-label="Default select example"
                                 value={rolesWanted}
                                 onChange={(e) => {
                                     setRolesWanted([...rolesWanted, e.target.value]);
                                 }}
                             >
-                            <option value="">Roles wanted</option>
-                            {roles.map((role, index) => (
-                                <option value={role.name} key={index}>
-                                {role.name}
-                                </option>
-                            ))}
+                                <option value="">Roles wanted</option>
+                                {roles.map((role, index) => (
+                                    <option value={role.name} key={index}>
+                                        {role.name}
+                                    </option>
+                                ))}
                             </select>
                         </section>
 
-                        <section className="col-5" >
-                            <section style={{width: '100%'}}>
-                                <label class="form-label">Tags</label>
-                                <div className=" d-flex input-group d-flex justify-content-end" style={{ width: '80%' }}>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="tags"
-                                    value={tempInput}
-                                    style={{ width: '60%', backgroundColor: '#E8F0FE' }}
-                                    onChange={(e) => {
-                                    setTempInput(e.target.value);
-                                    }}
-                                    placeholder="Projects tags"
-                                />
-                                <button className="btn" style={{backgroundColor: '#8A9CFF', color: 'white'}} type="button" onClick={handleTagSubmit}>
-                                    Add
-                                </button>
+                        <section className="col-6">
+                            <section style={{ width: '100%' }}>
+                                <label className="form-label">Tags</label>
+                                <div className="d-flex input-group justify-content-end" style={{ width: '100%' }}>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="tags"
+                                        value={tempInput}
+                                        style={{ width: '60%', backgroundColor: '#E8F0FE' }}
+                                        onChange={(e) => {
+                                            setTempInput(e.target.value);
+                                        }}
+                                        placeholder="Projects tags"
+                                    />
+                                    <button className="btn" style={{ backgroundColor: '#8A9CFF', color: 'white' }} type="button" onClick={handleTagSubmit}>
+                                        Add
+                                    </button>
                                 </div>
                             </section>
-                            
                         </section>
                     </section>
+
                     <br />   
 
                     <section class='row justify-content-center align-items-center"'>
-                            <section class='col-5'>
+                            <section class='col-6'>
                                 <section>
                                     {rolesWanted.map((role, index) => (
                                         <TagComponent key={index} data={role} event={() => deleteRolesTag(role)} />
                                     ))}
                                 </section>
                             </section>
-                            <section class='col-5'>
+                            <section class='col-6'>
                                 <section >
                                     {pitchTags.map((tag, index) => (
                                         <TagComponent key={index} data={tag} event={() => deleteTags(tag)} />
