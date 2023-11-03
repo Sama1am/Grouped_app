@@ -325,7 +325,7 @@ function Dashboard() {
                     <section class="col-2">
                         <SideBar admin={isAdmin} setActiveComponent={setActiveComponent} roomCode={roomCodeC} maxNumOfMembers={maxNumOfMembers} redirectRoute={redirectRoute} />
                     </section>
-                    <section class="col-10" style={{height: '100vh', overflow: 'auto'}}>
+                    <section class="col-10" style={{height: '100vh', overflow: 'auto', borderRadius: '25px'}}>
                         <section style={{width: '100%', height: '100%', padding:'2%'}}>
                             {activeComponent === "pitches" && <Pitches name={sessionName} />}
                             {activeComponent === "userPitches" && <UsersPitches />}

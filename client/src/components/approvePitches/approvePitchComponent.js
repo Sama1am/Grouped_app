@@ -63,8 +63,9 @@ function ApprovePitchComponent(data){
                                         <>
                                             {data.data.status === 'Approved' ? (null) : (
                                                 <button
+                                                    style={{backgroundColor: '#ACC18A'}}
                                                     type="button"
-                                                    class="btn btn-danger d-flex align-items-center justify-content-center"
+                                                    class="btn d-flex align-items-center justify-content-center"
                                                     onClick={() => { removeGroupMember(index, data.data.key, roomCodeC) }}
                                                 >
                                                     <BsPersonXFill />

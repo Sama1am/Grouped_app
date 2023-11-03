@@ -274,9 +274,9 @@ function PitchCreationTab(props) {
                         </section>
 
                         <section className="col-5" >
-                            <section class='align-middle'>
+                            <section style={{width: '100%'}}>
                                 <label class="form-label">Tags</label>
-                                <div className="input-group" style={{ width: '80%' }}>
+                                <div className=" d-flex input-group d-flex justify-content-end" style={{ width: '80%' }}>
                                 <input
                                     type="text"
                                     className="form-control"
@@ -296,7 +296,8 @@ function PitchCreationTab(props) {
                             
                         </section>
                     </section>
-                    <br />               
+                    <br />   
+
                     <section class='row justify-content-center align-items-center"'>
                             <section class='col-5'>
                                 <section>

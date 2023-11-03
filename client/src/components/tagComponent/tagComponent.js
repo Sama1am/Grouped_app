@@ -4,7 +4,7 @@ import { RxCross1 } from 'react-icons/rx'
 function TagComponent({data, event}){
     return(
         <>
-            <a className='pill'>
+            <a className='pill-x '>
                 <section>
                     {data}
                     <button style={{backgroundColor: 'transparent', border: 'none', color: 'black'}} onClick={event}>

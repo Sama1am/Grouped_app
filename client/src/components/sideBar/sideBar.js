@@ -19,7 +19,7 @@ function SideBar({ admin, setActiveComponent, roomCode, maxNumOfMembers, redirec
   return (
     <>
       <section id='SideBar' class="d-flex flex-column flex-shrink-0" 
-        style={{height: "100vh", position: "fixed", backgroundColor: 'white', padding: '1.5%'}}>
+        style={{height: "100vh", position: "fixed", backgroundColor: 'white', padding: '1.5%', borderTopRightRadius: '25px', borderBottomRightRadius: '25px'}}>
         <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
             <span class="fs-4" style={{ fontFamily: 'Gabarito', fontSize: '40px' }}>Grouped</span>
               </a>

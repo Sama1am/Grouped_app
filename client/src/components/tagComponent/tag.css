@@ -19,9 +19,29 @@
     display: inline-block;
     cursor: pointer;
     border-radius: 21px;
-    margin: 2%;
+    margin: 1%;
 }
 
 .pill:hover{
     background-color: #cadcae8d;
 }
+
+.pill-x {
+    background-color: #acc18aae;
+    border: solid;
+    border-color: #90a276;
+    font-size: 11px;
+    color: black;
+    padding: 5px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 21px;
+    margin: 1%;
+}
+
+.pill-x:hover{
+    background-color: #cadcae8d;
+}
+
