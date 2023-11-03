@@ -5,7 +5,7 @@ import './authButton.css'
 
 function LoginButton() {
   const serverUrl = process.env.REACT_APP_APILINK;
-  const baseUrl = window.location.origin;
+  const baseUrl = process.env.FRONTEND;  //window.location.origin;
 
   console.log(serverUrl);
 
