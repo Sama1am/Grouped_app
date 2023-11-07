@@ -18,9 +18,9 @@ function MyGroupComp(data, room){
 
     return(
         <>
-            <section style={{width: '65%', boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)'}}>
-                <section class="card" style={{padding: '3%'}}>
-                    <section>
+            <section style={{width: '65%', boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)', borderRadius: '10px'}}>
+                <section class="card" style={{padding: '4%'}}>
+                    <section class='row'>
                         <h5 class="card-header" className="col-md-9"
                             style={{fontFamily: 'Gabarito', fontSize: '30px'}}>{data.data.name}</h5>
                         <section className="col-md-3 d-flex justify-content-end">
@@ -33,7 +33,7 @@ function MyGroupComp(data, room){
                     </section>
                     <ul class="list-group list-group-flush">
                         <ul class="list-group">
-                            <li class="list-group-item" aria-current="true" style={{fontWeight: 'bold', backgroundColor: '#E2E7FF'}}>Members:</li>
+                            <li class="list-group-item" aria-current="true" style={{fontWeight: 'bold', background: 'linear-gradient(76deg, rgba(97,131,229,0.5) 0%, rgba(182,151,245,0.5) 100%)'}}>Members:</li>
                             {data.data.groupMembers.map((member, index) => (
                                 <li class="list-group-item" key={index}>
                                     <span style={{ marginRight: '10px' }}>

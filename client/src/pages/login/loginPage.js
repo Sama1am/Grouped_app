@@ -8,10 +8,10 @@ function Login() {
     <>
       <div style={{overflow: 'hidden'}}>
         <section style={{justifyContent: 'center', position: 'absolute', width: '100%', height: '100vh', backgroundColor: '#E7EAFB', overflow: 'hidden'}}>
-          <section className='bg-shape opcaity bg-blur bg-one'></section>''
-          <section className='bg-shape opcaity bg-blur bg-two' style={{textAlign: 'center'}}></section>
-          <section className='bg-shape-sml opcaity bg-blur bg-two top-right-corner'></section>
-          <section className='bg-shape-sml opcaity bg-blur bg-one bottom-right-corner'></section>
+          <section className='bg-shape opcaity bg-blur bg-blue'></section>''
+          <section className='bg-shape opcaity bg-blur bg-green' style={{textAlign: 'center'}}></section>
+          <section className='bg-shape-sml opcaity bg-blur bg-pink top-right-corner'></section>
+          <section className='bg-shape-sml opcaity bg-blur bg-blue bottom-right-corner'></section>
         </section>
 
           <section style={{width: '100%', height: '100vh'}}>

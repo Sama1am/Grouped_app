@@ -1,10 +1,11 @@
 // Create a context to manage the pitchList
 import React, { createContext, useContext, useState } from 'react';
 import { socket } from './socketContext';
-
+import { AdminContext } from './adminContext';
 const PitchListContext = createContext();
 
 export function PitchListProvider({ children }) {
+  const { userEmail } = useContext(AdminContext);
   const [pitchList, setPitchList] = useState([]);
   const [myPitch, setMyPitch] = useState(0);
   const members = [];
@@ -28,10 +29,23 @@ export function PitchListProvider({ children }) {
     const res = checkPitchData(data, pitchList);
     if(res === 200) {
       setPitchList((prevPitchList) => [...prevPitchList, data]);
+      if(data.email.trim() === userEmail.trim()){
+        setMyPitch(myPitch +1);
+      }
     } else if(res === 400){
       console.log("Pitch already exists"); 
     }
   };
+
+  function checkIfAuthor(data){
+    const individualPitches = [].concat(...data);
+    for(const pitch of individualPitches){
+      if(pitch.email === userEmail){
+        console.log("found picth you are author of!")
+        setMyPitch(myPitch +1);
+      }
+    }
+  }
 
   function checkPitchData(data, pitchList){
 
@@ -254,7 +268,8 @@ export function PitchListProvider({ children }) {
       setMyPitch,
       myPitch,
       sessionName,
-      setSessionName
+      setSessionName,
+      checkIfAuthor
       }}>
 
       {children}

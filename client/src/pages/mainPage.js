@@ -8,6 +8,7 @@ function Main(){
     const serverUrl = process.env.REACT_APP_APILINK;
     const searchParams = new URLSearchParams(window.location.search);
     const [token, setToekn] = useState(searchParams.get('token'));
+    const [loading, setLoading] = useState(true);
 
     if(token)
     {
@@ -37,6 +38,7 @@ function Main(){
                     console.log("from server: " + data.isAdmin);
                     await setIsAdmin(true);
                     sessionStorage.setItem('admin', true);
+                    setLoading(false);
                     console.log("from context:" + isAdmin);
                 }
                 else if(data.isAdmin === false)
@@ -44,6 +46,7 @@ function Main(){
                     console.log("from server: " + data.isAdmin);
                     await setIsAdmin(false);
                     sessionStorage.setItem('admin', false);
+                    setLoading(false);
                     console.log("from context:" + isAdmin);
                 }
                 else if(response.status === 500){
@@ -88,13 +91,16 @@ function Main(){
     useEffect(() => {
         if(isAdmin === undefined)
         {
-            if(sessionStorage.getItem('admin')){
-                setIsAdmin(sessionStorage.getItem('admin'));
+            console.log("SETTING ADMIN")
+            const isAdminFromSessionStorage = sessionStorage.getItem('admin');
+            if(isAdminFromSessionStorage){
+                setIsAdmin(isAdminFromSessionStorage);
+                setLoading(false);
+                console.log("SET ADMIN FROM SESSION STORAGE")
             }else{
                 getAdmin(token);
+                console.log("GETTING ADMIN FROM SERVER")
             }
-            
-            
         }
 
         if(userEmail === '')
@@ -102,24 +108,24 @@ function Main(){
             getUserEmail();
         } 
         
-    }, [token, isAdmin]);
+    }, [token, isAdmin, setIsAdmin]);
 
     return(
         <>
             <section style={{justifyContent: 'center', position: 'absolute', width: '100%', height: '100vh', backgroundColor: '#E7EAFB', overflow: 'hidden'}}>
-                <section className='bg-shape opcaity bg-blur bg-one'></section>''
-                <section className='bg-shape opcaity bg-blur bg-two' style={{textAlign: 'center'}}></section>
-                <section className='bg-shape-sml opcaity bg-blur bg-two top-right-corner'></section>
-                <section className='bg-shape-sml opcaity bg-blur bg-one bottom-right-corner'></section>
+                <section className='bg-shape opcaity bg-blur bg-blue'></section>''
+                <section className='bg-shape opcaity bg-blur bg-green' style={{textAlign: 'center'}}></section>
+                <section className='bg-shape-sml opcaity bg-blur bg-pink top-right-corner'></section>
+                <section className='bg-shape-sml opcaity bg-blur bg-blue bottom-right-corner'></section>
             </section>
 
-            {isAdmin === undefined ? (
+            {loading ? (
                 <div class="spinner-border" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
             ) : (
                 <section>
-                    <section class="position-absolute top-50 start-50 translate-middle align-middle card" style={{boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)', padding: '1%'}}>
+                    <section class="position-absolute top-50 start-50 translate-middle align-middle card" style={{boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)', padding: '1%', borderRadius: '25px'}}>
                         <div class="card-body">
                                 <br />
                             <section style={{textAlign: 'center'}}>
@@ -128,11 +134,17 @@ function Main(){
                             <h1 class="text-center card-title" style={{ fontFamily: 'Gabarito' }}>Grouped</h1>
                                 <br />
                                 <br />
-                            { isAdmin === true ? 
-                            <> <Create /> <br /><br /> <Join /> </> : 
-                            <Join /> 
-                            }
-                                <br />
+                                {isAdmin === true ? (
+                                <>
+                                    <Create />
+                                    <br />
+                                    <br />
+                                </>
+                                ) : null }
+
+                                <Join />
+                                    <br />
+                            
                         </div>
                     </section>
 

@@ -4,7 +4,6 @@ const passport = require('passport');
 const OAuth2Strategy = require('passport-google-oauth').OAuth2Strategy;
 const session = require('express-session');
 const http = require("http");
-//const { Server } = require("socket.io");
 const socketIo = require('socket.io');
 const cors = require('cors');
 const app = express();
@@ -22,7 +21,7 @@ app.use(bodyParser.json({ limit: "100mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const corsOptions = {
-  origin: frontend,
+  origin: frontend,//'http://localhost:3000',
   credentials: true,
   optionSuccessStatus: 200,
 };

@@ -6,6 +6,9 @@ import { GrUserWorker } from 'react-icons/gr'
 import ApprovedComp from '../approvePitches/approvedCheck';
 import { usePitchList } from '../../context/pitchContext'; 
 import Tag2Component from '../tagComponent/tags2Component';
+import { CgCheckO } from 'react-icons/cg'
+import { RxCrossCircled } from 'react-icons/rx'
+import { GoCircle } from 'react-icons/go'
 
 function PitchComponent({index, data}) {
     const { maxNumOfMembers } = usePitchList();
@@ -27,13 +30,26 @@ function PitchComponent({index, data}) {
     return (
         <>
             <section class='col d-flex justify-content-center align-items-center' style={{height: '100%', width: '100%', padding: '2%'}}>
-                <section class="card col" style={{width: '100%', padding: '2%', boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)'}}>
+                <section class="card col" style={{width: '100%', padding: '4%', boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)', borderRadius: '10px'}}>
                     <section style={{width: '100%'}}>
-                        <section style={{ display: 'flex', fontFamily: 'Gabarito', fontWeight: 'bold', fontSize: 'large' }}>
-                            <h3 className="col-md-9">{data.name}</h3>
-                            <section className="col-md-3 d-flex justify-content-end">
-                                {data.status === 'Approved' ? <ApprovedComp /> : null}
+                        <section style={{ width: '100%', display: 'flex', fontFamily: 'Gabarito', fontWeight: 'bold', fontSize: 'large' }}>
+                            <h3 className="col-md-8">{data.name}</h3>
+
+                            <section class='col-4 d-flex align-items-center justify-content-end'>
+                                {data.status === 'pending' ? (null):
+                                    <>
+                                        {data.status === 'Approved' ? (
+                                            <section class='text-align-center btn disabled' style={{backgroundColor: '#A0F5CE', padding: '5%', fontWeight: 'bold'}} >
+                                                <CgCheckO size={18}/> {data.status}
+                                            </section>) : (
+                                                <> 
+                                                    {data.status === 'Denied' ? (null) : (null)}
+                                                </>
+                                        )}
+                                    </>
+                                }
                             </section>
+
                         </section>
                         <hr />
                         <section class="card-body">
@@ -63,7 +79,7 @@ function PitchComponent({index, data}) {
 
                     <section style={{width: '100%'}}>
                         <ul class="list-group">
-                                <li class="list-group-item card-header" aria-current="true" style={{fontWeight: 'bold', backgroundColor: '#E2E7FF'}}>Members: </li>
+                                <li class="list-group-item card-header" aria-current="true" style={{fontWeight: 'bold', background: 'linear-gradient(76deg, rgba(97,131,229,0.5) 0%, rgba(182,151,245,0.5) 100%)'}}>Members: </li>
                                 {data.groupMembers.map((member, index) => (
                                     <li class="list-group-item" key={index}>
                                         <BsFillPersonFill size={22} style={{ marginRight: '5px' }}/> <a style={{marginRight:'3%'}}>{member.userName}</a> 

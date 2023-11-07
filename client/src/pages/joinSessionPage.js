@@ -85,7 +85,7 @@ function Join(){
                     value={inputValue}
                     onChange={handleInputChange}
                 />
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2" style={{ fontFamily: 'Gabarito', backgroundColor: '#E2E7FF' }}
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2" style={{ fontFamily: 'Gabarito', backgroundColor: '#E2E7FF'}}
                     onClick={() => checkSessionId(inputValue)}>
                         Join
                 </button>

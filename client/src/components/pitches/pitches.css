@@ -7,9 +7,11 @@
 
 .create-pitchbtn{
     border-radius: 100%;
-    background-color: #8A9CFF;
+    
     border: 1px solid #DFDFDF;
     padding: 10px;
+    background: rgb(97,131,229);
+    background: linear-gradient(76deg, rgba(97,131,229,1) 0%, rgba(182,151,245,1) 100%);
 }
 
 .create-pitchbtn:hover{

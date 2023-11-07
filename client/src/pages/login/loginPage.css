@@ -33,25 +33,41 @@
 }
 
 .opcaity{
-    opacity: .5;
+    opacity: .9;
 }
 
 .bg-blur{
     filter: blur(80px);
 }
 
-.bg-one{
-    background-color: #899CFF;
+.bg-blue{
+    background-color: #70AFF2;
 }
 
-.bg-two{
-    background-color: #ACC18A;
+.bg-green{
+    background-color: #6CE4AC;
+}
+
+.bg-purple{
+    background-color: #B697F5;
+}
+
+.bg-orange{
+    background-color: #FEB684;
+}
+
+.bg-pink{
+    background-color: #F192E9;
+}
+
+.bg-red{
+    background-color: #FF7C96;
 }
 
 .top-right-corner {
     z-index: 0;
     position: absolute;
-    top: -200px;
+    top: -190px;
     right: -225px;
 }
 

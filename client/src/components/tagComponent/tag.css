@@ -8,9 +8,9 @@
 }
 
 .pill {
-    background-color: #acc18aae;
+    background-color: #DBBCFF;
     border: solid;
-    border-color: #90a276;
+    border-color: #c09ee7;
     font-size: 13px;
     color: black;
     padding: 5px 10px;
@@ -23,13 +23,13 @@
 }
 
 .pill:hover{
-    background-color: #cadcae8d;
+    background-color: #e5ceff;
 }
 
 .pill-x {
-    background-color: #acc18aae;
+    background-color: #CCD4FF;
     border: solid;
-    border-color: #90a276;
+    border-color: #a2b0ff;
     font-size: 11px;
     color: black;
     padding: 5px 8px;
@@ -42,6 +42,6 @@
 }
 
 .pill-x:hover{
-    background-color: #cadcae8d;
+    background-color: #d8deff;
 }
 

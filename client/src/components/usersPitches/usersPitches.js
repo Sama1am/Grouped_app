@@ -12,7 +12,7 @@ function UsersPitches(){
         <>
            <section class="d-flex flex-column col" 
                 style={{display: 'flex', alignItems: 'center', flexDirection: 'column', width: '100%'}}>
-                <h1 style={{paddingTop: '3%'}}>My pitch</h1>
+                <h1 style={{paddingTop: '3%', color: '#36494E'}}>My pitch</h1>
                 <br />
                 <section class='align-items-center' 
                     style={{display: 'flex', alignItems: 'center', flexDirection: 'column', width: '100%', height: '100%'}}>

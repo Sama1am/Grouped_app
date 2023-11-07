@@ -6,7 +6,9 @@ import { usePitchList } from '../../context/pitchContext';
 import { AdminContext } from '../../context/adminContext';
 import { socket } from '../../context/socketContext'
 import './approvePitch.css';
-
+import { CgCheckO } from 'react-icons/cg'
+import { RxCrossCircled } from 'react-icons/rx'
+import { GoCircle } from 'react-icons/go'
 
 function ApprovePitchComponent(data){
     const { approvePitch, removeGroupMember  } = usePitchList();
@@ -39,14 +41,36 @@ function ApprovePitchComponent(data){
 
         <>
             <section style={{width: '70%', boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)'}}> 
-                <section class="card" style={{padding: '3%'}}>
-                    <section>
-                        <h5 
-                            style={{fontFamily: 'Gabarito', width:'100%', fontSize: '30px'}}>{data.data.name}</h5>
-                            Status: {data.data.status}
+                <section class="card col" style={{padding: '3%'}}>
+                    <section className='row' style={{ width: '95%' }}>
+                        <section className='col-8' style={{ fontFamily: 'Gabarito', fontSize: '35px' }}>
+                            {data.data.name}
+                        </section>
+                        <section class='col-4 d-flex align-items-center  justify-content-end'>
+
+                            {data.data.status === 'pending' ? (
+                            <section class='text-align-center btn disabled' style={{backgroundColor: '#FFC28A', padding: '5%', fontWeight: 'bold'}} >
+                                <GoCircle size={18}/> {data.data.status}
+                            </section>):
+                                <>
+                                    {data.data.status === 'Approved' ? (
+                                        <section class='text-align-center btn disabled' style={{backgroundColor: '#A0F5CE', padding: '5%', fontWeight: 'bold'}} >
+                                            <CgCheckO size={18}/> {data.data.status}
+                                        </section>) : (
+                                            <> 
+                                                {data.data.status === 'Denied' ? (
+                                                <section class='text-align-center btn disabled' style={{backgroundColor: '#FFBBBC', padding: '5%', fontWeight: 'bold'}} >
+                                                    <RxCrossCircled size={18}/> {data.data.status}
+                                                </section>) : (null)}
+                                            </>
+                                    )}
+                                </>
+                            }
+                            
+                        </section>
                     </section>
                     <hr />
-                    <div class="card-body">
+                    <div class="card-body row">
                         <p class="card-text">{data.data.disc} </p>
                     </div>
                     <section className="list-group list-group-flush">

@@ -48,7 +48,7 @@ function Pitches(){
                                 <span class="placeholder col-10"></span>
                             </h1>
                         ) : (
-                            <h1 class='row' style={{paddingTop: '3%'}}>{sessionName}</h1>
+                            <h1 class='row' style={{paddingTop: '3%', color: '#36494E'}}>{sessionName}</h1>
                         )}
                     </section>
                     

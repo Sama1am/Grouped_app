@@ -23,7 +23,10 @@ function Dashboard() {
         updateDeletedPitch,
         setMaxNumOfMembers,
         setSessionName,
-        sessionName
+        sessionName,
+        setMyPitch,
+        myPitch,
+        checkIfAuthor
     } = usePitchList();
 
     const { isAdmin, setIsAdmin, roomCodeC, setRoomCodeC, userEmail, setUserEmail, setRoles, roles} = useContext(AdminContext);
@@ -153,7 +156,7 @@ function Dashboard() {
                 console.error("An error occurred: ", response.status);
             }
         } catch (e) {
-            console.error("An error occurred: " + e);
+            console.log("An error occurred: " + e);
         }
     }
 
@@ -175,7 +178,7 @@ function Dashboard() {
                 console.error("An error occurred: ", response.status);
             }
         } catch (e) {
-            console.error("An error occurred: " + e);
+            console.log("An error occurred: " + e);
         }
     }
 
@@ -260,14 +263,16 @@ function Dashboard() {
 
     function receivePitchHandler(data){
         if (!getExistingPitches) {
+            checkIfAuthor(data);
             const individualPitches = [].concat(...data);
 
             for (const pitch of individualPitches) {
-                //listOfArrays.push(arr);
                 addPitch(pitch);
                 console.log("INDIVIDUAL PITCHES FROM SERVER: " , pitch);
             }
             setGetExistingPitches(true);
+
+            
             console.log(getExistingPitches);
 
         } else {
@@ -335,7 +340,6 @@ function Dashboard() {
                                 activeComponent === "myGroup" && <MyGroup />
                             )}
                         </section>
-                        
                     </section>
                 </section>
             </section>

@@ -193,7 +193,7 @@ function PitchCreationTab(props) {
                         props.setTrigger(false);
                         handleReset();
                         }}
-                        style={{position: "absolute", top: "40px", right: "10px", }}></button>
+                        style={{position: "absolute", top: "40px", right: "10px", margin: '5px'}}></button>
                 </section>
                     <br />        
                 <section id="mainContent" class="card-body align-items-center justify-content-center col">

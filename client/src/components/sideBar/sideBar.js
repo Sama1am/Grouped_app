@@ -20,9 +20,10 @@ function SideBar({ admin, setActiveComponent, roomCode, maxNumOfMembers, redirec
     <>
       <section id='SideBar' class="d-flex flex-column flex-shrink-0" 
         style={{height: "100vh", position: "fixed", backgroundColor: 'white', padding: '1.5%', borderTopRightRadius: '25px', borderBottomRightRadius: '25px'}}>
-        <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-            <span class="fs-4" style={{ fontFamily: 'Gabarito', fontSize: '40px' }}>Grouped</span>
-              </a>
+          <a class=" d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+              <img class="col" src="/logo_grouped.png" alt="My Logo" className='logo-sb'/>
+              <span class="col" style={{ fontFamily: 'Gabarito', fontSize: '28px', marginLeft: '10px'}}>Grouped</span>
+          </a>
               <hr></hr>
                   <ul class="nav nav-underline flex-column mb-auto">
                   <li class="nav-item">

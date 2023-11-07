@@ -25,7 +25,7 @@
 
 .button-profile {
     align-items: center;
-    background-color: #8A9CFF;
+    background-color: #B697F5;
     border: 1px solid #DFDFDF;
     border-radius: 16px;
     box-sizing: border-box;
@@ -43,6 +43,8 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     width: 100%;
+
+    
   }
   
   .button-profile:active,
@@ -98,12 +100,28 @@
     filter: blur(80px);
 }
 
-.bg-one{
-    background-color: #899CFF;
+.bg-blue{
+    background-color: #70AFF2;
 }
 
-.bg-two{
-    background-color: #ACC18A;
+.bg-green{
+    background-color: #6CE4AC;
+}
+
+.bg-purple{
+    background-color: #B697F5;
+}
+
+.bg-orange{
+    background-color: #FEB684;
+}
+
+.bg-pink{
+    background-color: #F192E9;
+}
+
+.bg-red{
+    background-color: #FF7C96;
 }
 
 .top-right-corner {

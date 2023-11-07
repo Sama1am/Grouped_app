@@ -1,3 +1,18 @@
+.pending-container{
+  background-color: rgb(255, 206, 114);
+  border-radius: 10px;
+  text-decoration: none;
+  padding: 1%;
+  height: 80%;
+  color: rgb(0, 0, 0);
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+
 .button-approve {
     align-items: center;
     background-color: #899dff8f;
@@ -42,3 +57,5 @@
       padding: 14px 16px;
     }
   }
+
+  
