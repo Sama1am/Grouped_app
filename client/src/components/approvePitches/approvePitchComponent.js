@@ -40,26 +40,25 @@ function ApprovePitchComponent(data){
     return(
 
         <>
-            <section style={{width: '70%', boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)'}}> 
-                <section class="card col" style={{padding: '3%'}}>
-                    <section className='row' style={{ width: '95%' }}>
-                        <section className='col-8' style={{ fontFamily: 'Gabarito', fontSize: '35px' }}>
+            <section style={{width: '70%', boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)', marginBottom: '3%'}}> 
+                <section class="card col" style={{padding: '4%'}}>
+                    <section className='row'>
+                        <section className='col' style={{ fontFamily: 'Gabarito', fontSize: '35px' }}>
                             {data.data.name}
                         </section>
-                        <section class='col-4 d-flex align-items-center  justify-content-end'>
-
+                        <section class='col-4 d-flex align-items-center justify-content-end'>
                             {data.data.status === 'pending' ? (
-                            <section class='text-align-center btn disabled' style={{backgroundColor: '#FFC28A', padding: '5%', fontWeight: 'bold'}} >
+                            <section class='text-align-center btn disabled' style={{backgroundColor: '#F4D07A', padding: '5%', fontWeight: 'bold'}} >
                                 <GoCircle size={18}/> {data.data.status}
                             </section>):
                                 <>
                                     {data.data.status === 'Approved' ? (
-                                        <section class='text-align-center btn disabled' style={{backgroundColor: '#A0F5CE', padding: '5%', fontWeight: 'bold'}} >
+                                        <section class='text-align-center btn disabled' style={{backgroundColor: '#AFD8D0', padding: '5%', fontWeight: 'bold'}} >
                                             <CgCheckO size={18}/> {data.data.status}
                                         </section>) : (
                                             <> 
                                                 {data.data.status === 'Denied' ? (
-                                                <section class='text-align-center btn disabled' style={{backgroundColor: '#FFBBBC', padding: '5%', fontWeight: 'bold'}} >
+                                                <section class='text-align-center btn disabled' style={{backgroundColor: '#F2C8C8', padding: '5%', fontWeight: 'bold'}} >
                                                     <RxCrossCircled size={18}/> {data.data.status}
                                                 </section>) : (null)}
                                             </>
@@ -75,7 +74,7 @@ function ApprovePitchComponent(data){
                     </div>
                     <section className="list-group list-group-flush">
                         <section class="list-group">
-                            <li className="list-group-item" style={{fontWeight: 'bold', backgroundColor: '#E2E7FF'}}>Members:</li>
+                            <li className="list-group-item" style={{fontWeight: 'bold', backgroundColor: '#5F53C8', color:'white'}}>Members:</li>
                             {data.data.groupMembers.map((member, index) => (
                                 <li className="list-group-item d-flex justify-content-between" key={index}>
                                 <div>
@@ -87,7 +86,7 @@ function ApprovePitchComponent(data){
                                         <>
                                             {data.data.status === 'Approved' ? (null) : (
                                                 <button
-                                                    style={{backgroundColor: '#ACC18A'}}
+                                                    style={{backgroundColor: '#FEB684'}}
                                                     type="button"
                                                     class="btn d-flex align-items-center justify-content-center"
                                                     onClick={() => { removeGroupMember(index, data.data.key, roomCodeC) }}
@@ -116,7 +115,7 @@ function ApprovePitchComponent(data){
 
                             <section class='col-5 d-flex justify-content-center align-items-center'> 
                                 <button type="button" onClick={deny}
-                                    className='button-approve button-red'
+                                    className='button-deny button-red'
                                     style={{padding: '1%'}}>
                                         <FiUserCheck style={{marginRight: '5px'}}/> Deny
                                 </button>

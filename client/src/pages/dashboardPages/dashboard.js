@@ -25,8 +25,7 @@ function Dashboard() {
         setSessionName,
         sessionName,
         setMyPitch,
-        myPitch,
-        checkIfAuthor
+        myPitch
     } = usePitchList();
 
     const { isAdmin, setIsAdmin, roomCodeC, setRoomCodeC, userEmail, setUserEmail, setRoles, roles} = useContext(AdminContext);
@@ -263,7 +262,6 @@ function Dashboard() {
 
     function receivePitchHandler(data){
         if (!getExistingPitches) {
-            checkIfAuthor(data);
             const individualPitches = [].concat(...data);
 
             for (const pitch of individualPitches) {
@@ -324,7 +322,7 @@ function Dashboard() {
    
     return(
         <>
-           <section style={{ width: '100%', height: '100%', backgroundColor: '#EFF2FB'}}>
+           <section style={{ width: '100%', height: '100%', backgroundColor: '#DBE1EE'}}>
                 <section class="row" style={{ width: '100%', height: '100%' }}>
                     {isAdmin === false ? <ProfilePopUp trigger={profileState} setTrigger={setProfileState} /> : null}
                     <section class="col-2">

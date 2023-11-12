@@ -4,11 +4,12 @@ import './profilePopUp.css'
 
 const ProfilePopUp = (props) => {
     //const { usePitchList } = usePitchList();
-    const { roles, setRoles, setUserName } = useContext(AdminContext);
+    const { roles, setRoles, setUserName, setStudentNuber } = useContext(AdminContext);
     const serverUrl = process.env.REACT_APP_APILINK;
     const baseUrl = window.location.origin;
  
     const [name, setName] = useState('');
+    const [studentNumber, setNumber] = useState();
     const [selectedRole, setSelectedRole] = useState('');
     //const [roles, setRoles] = useState([]); 
     const [selectedRoleIndex, setSelectedRoleIndex] = useState(null);
@@ -16,6 +17,11 @@ const ProfilePopUp = (props) => {
     
     const handleInputChange = (event) => {
         setName(event.target.value);
+    };
+
+    const handleStudentNumberChange = (event) => {
+        setNumber(event.target.value);
+        
     };
 
     const handleRoleChange = (event) => {
@@ -47,13 +53,16 @@ const ProfilePopUp = (props) => {
     }
 
     async function updateProfile(){
+        console.log("STUDENT NUMBER IS: ", studentNumber)
         const token = sessionStorage.getItem('accessToken');
         const url = `${serverUrl}/profile/updateProfile`;
         const postData = {
             name: name,
-            role: selectedRoleIndex
+            role: selectedRoleIndex, 
+            studentNumber: studentNumber
         };
-    
+        
+        console.log(postData);
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -64,6 +73,7 @@ const ProfilePopUp = (props) => {
         };
     
         const data =  await fetch(url, requestOptions);
+        
     }
     
     useEffect(() => {
@@ -90,19 +100,25 @@ const ProfilePopUp = (props) => {
     }
 
     async function createProfile(){
-        if(name && selectedRole)
+        if(name && selectedRole && studentNumber)
         {
             checkCSSClass();
             setTriggerValue(false);
             sessionStorage.setItem('userName', name);
             sessionStorage.setItem('profileCreated', true);
             setUserName(name);
+            setStudentNuber(studentNumber);
             updateProfile();
         }
-        else if (name === '' || selectedRole === ''){
+        else if (name === '' || selectedRole === '' || studentNumber === ''){
             console.log("Input feilds are not full")
-            document.getElementById('NameInput').classList.add('invalid');
-            document.getElementById('RoleSelector').classList.add('invalid');
+            if(name === '' ){
+                document.getElementById('NameInput').classList.add('invalid');
+            }else if(selectedRole === ''){
+                document.getElementById('RoleSelector').classList.add('invalid');
+            }else if(studentNumber === ''){
+                document.getElementById('studentInput').classList.add('invalid');
+            }
             setTriggerValue(true);
         }
     }
@@ -111,14 +127,32 @@ const ProfilePopUp = (props) => {
         <>
             <section>
                 <section className='bg-backgroun' id='background'>
-                    <section className='bg-shape opcaity bg-blur bg-blue'></section>
+                    {/* <section className='bg-shape opcaity bg-blur bg-blue'></section>
                     <section className='bg-shape opcaity bg-blur bg-green' style={{textAlign: 'center'}}></section>
                     <section className='bg-shape-sml opcaity bg-blur bg-pink top-right-corner'></section>
-                    <section className='bg-shape-sml opcaity bg-blur bg-blue bottom-right-corner'></section>
+                    <section className='bg-shape-sml opcaity bg-blur bg-blue bottom-right-corner'></section> */}
+
+                <section>
+                    <section className='blob bg-purple idk  bg-blur'></section>
+                    <section className='blob-m bg-green idk-1  bg-blur'></section>
+                    <section className='blob-s bg-pink idk-2 blur'></section>
+                </section>
+
+                <section>
+                    <section className='two-blob bg-purple ps bg-blur-2'></section>
+                    <section className='two-blob-2 bg-green ps-1  bg-blur-2'></section>
+                    <section className='two-blob-3 bg-pink ps-2 blur-2'></section>
+                </section>
+
+                <section>
+                    <section className='three-blob two-ps bg-purple sec-blur'></section>
+                    <section className='three-blob-2 two-ps-2 bg-green sec-blur'></section>
+                    <section className='three-blob-3 two-ps-3 bg-pink sec-blur-2'></section>
+                </section>
                 </section>
 
                 <section style={{width: '100vh'}}>
-                    <section  class="card position-absolute top-50 start-50 translate-middle align-middle" style={{ zIndex: '1001', width: '20%', boxShadow: '0 0 8px rgba(0, 0, 0, 0.3)', borderRadius: '25px'}}>
+                    <section  class="card position-absolute top-50 start-50 translate-middle align-middle" style={{ zIndex: '1001', width: '25%', boxShadow: '0 0 8px rgba(0, 0, 0, 0.3)', borderRadius: '25px'}}>
                         <section class="card-body mb-2">
                             <br />
                             <section className='d-flex flex-column align-items-center col'>
@@ -126,21 +160,34 @@ const ProfilePopUp = (props) => {
                                 <h1 className="text-center card-title mt-3" style={{ fontFamily: 'Gabarito' }}>Profile</h1>
                             </section>
 
+                            <section class='row'>
+                                <section class="col mb-3">
+                                    <input type="text" class="form-control" id="NameInput"  
+                                        placeholder="Name"
+                                        value={name}
+                                        onChange={handleInputChange}
+                                        required
+                                        style={{backgroundColor: '#E8F0FE'}}
+                                    />
+                                </section>
 
-                            <section class="mb-3">
-                                <input type="text" class="form-control" id="NameInput"  
-                                    placeholder="Name"
-                                    value={name}
-                                    onChange={handleInputChange}
-                                    required
-                                    style={{backgroundColor: '#E8F0FE', fontWeight: 'bold'}}
-                                />
+                                <section class="col mb-3">
+                                    <input type="text" class="form-control" id="studentInput"  
+                                        placeholder="Student number"
+                                        value={studentNumber}
+                                        onChange={handleStudentNumberChange}
+                                        required
+                                        style={{backgroundColor: '#E8F0FE'}}
+                                    />
+                                </section>
+
                             </section>
                                 <br />
+
                                 <section>
                                     <select class="form-select" id="RoleSelector" required
                                         value={selectedRole}
-                                        style={{backgroundColor: '#E8F0FE', fontWeight: 'bold'}}
+                                        style={{backgroundColor: '#E8F0FE'}}
                                         onChange={(e) => {
                                             const selectedIndex = e.target.selectedIndex;
                                             setSelectedRoleIndex(selectedIndex);

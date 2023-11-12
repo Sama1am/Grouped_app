@@ -7,7 +7,7 @@ import { AdminContext } from '../../context/adminContext';
 import TagComponent from '../tagComponent/tagComponent';
 
 function PitchCreationTab(props) {
-    const { userEmail, roles, isAdmin, userName } = useContext(AdminContext);
+    const { userEmail, roles, isAdmin, userName, studentNumber } = useContext(AdminContext);
     const { setMyPitch, myPitch } = usePitchList();
     const serverUrl = process.env.REACT_APP_APILINK;
     const [sessionCode, setSessionCode] = useState('');
@@ -112,7 +112,7 @@ function PitchCreationTab(props) {
         console.log(res);
 
         if(!isAdmin){
-            let newMember = { email: userEmail, role: userRole, userName: userName };
+            let newMember = { email: userEmail, role: userRole, userName: userName, studentNumber: studentNumber};
             members.push(newMember);
         }
         
@@ -236,8 +236,8 @@ function PitchCreationTab(props) {
                     </section>
                     
                     <br />
-                    <section class="row justify-content-center align-items-center" style={{width: '100%'}}>
-                        <section style={{width: '100%'}}>
+                    <section class="row justify-content-center align-items-center">
+                        <section>
                             <label class="form-label">Discription</label>
                             <textarea  type="text" class="form-control" id="disc" aria-describedby="emailHelp"
                                 value={pitchDisc}
@@ -275,7 +275,7 @@ function PitchCreationTab(props) {
 
                         <section className="col-6">
                             <section style={{ width: '100%' }}>
-                                <label className="form-label">Tags</label>
+                                <label className="form-label">Tags:</label>
                                 <div className="d-flex input-group justify-content-end" style={{ width: '100%' }}>
                                     <input
                                         type="text"
@@ -288,7 +288,7 @@ function PitchCreationTab(props) {
                                         }}
                                         placeholder="Projects tags"
                                     />
-                                    <button className="btn" style={{ backgroundColor: '#8A9CFF', color: 'white' }} type="button" onClick={handleTagSubmit}>
+                                    <button className="btn " style={{ backgroundColor: '#4F43B3', color: 'white' }} type="button" onClick={handleTagSubmit}>
                                         Add
                                     </button>
                                 </div>

@@ -25,7 +25,7 @@
 }
 
 .opcaity{
-    opacity: .5;
+    opacity: .8;
 }
 
 .bg-blur{
@@ -33,23 +33,23 @@
 }
 
 .bg-blue{
-    background-color: #70AFF2;
+    background-color: #B0D8F1;
 }
 
 .bg-green{
-    background-color: #6CE4AC;
+    background-color: #AFD8D0;
 }
 
 .bg-purple{
-    background-color: #B697F5;
+    background-color: #4F43B3;
 }
 
 .bg-orange{
-    background-color: #FEB684;
+    background-color: #F4D07A;
 }
 
 .bg-pink{
-    background-color: #F192E9;
+    background-color: #F2C8CA;
 }
 
 .bg-red{
@@ -69,3 +69,5 @@
     top: 200px;
     right: 225px;
 }
+
+

@@ -39,11 +39,14 @@ function PitchComponent({index, data}) {
                                 {data.status === 'pending' ? (null):
                                     <>
                                         {data.status === 'Approved' ? (
-                                            <section class='text-align-center btn disabled' style={{backgroundColor: '#A0F5CE', padding: '5%', fontWeight: 'bold'}} >
+                                            <section class='text-align-center btn disabled' style={{backgroundColor: '#AFD8D0', padding: '5%', fontWeight: 'bold'}} >
                                                 <CgCheckO size={18}/> {data.status}
                                             </section>) : (
                                                 <> 
-                                                    {data.status === 'Denied' ? (null) : (null)}
+                                                    {data.status === 'Denied' ? (
+                                                    <section class='text-align-center btn disabled' style={{backgroundColor: '#F2C8C8', padding: '5%', fontWeight: 'bold'}} >
+                                                        <RxCrossCircled size={18}/> {data.status}
+                                                    </section>) : (null)}
                                                 </>
                                         )}
                                     </>
@@ -79,7 +82,7 @@ function PitchComponent({index, data}) {
 
                     <section style={{width: '100%'}}>
                         <ul class="list-group">
-                                <li class="list-group-item card-header" aria-current="true" style={{fontWeight: 'bold', background: 'linear-gradient(76deg, rgba(97,131,229,0.5) 0%, rgba(182,151,245,0.5) 100%)'}}>Members: </li>
+                                <li class="list-group-item card-header" aria-current="true" style={{fontWeight: 'bold', backgroundColor: '#5F53C8', color: '#EFF2F9'}}>Members: </li>
                                 {data.groupMembers.map((member, index) => (
                                     <li class="list-group-item" key={index}>
                                         <BsFillPersonFill size={22} style={{ marginRight: '5px' }}/> <a style={{marginRight:'3%'}}>{member.userName}</a> 
@@ -91,12 +94,12 @@ function PitchComponent({index, data}) {
                     <section style={{marginTop:'1%'}}>
                         {isAdmin ? (null) : (
                             <>
-                                {data.email === userEmail ? (null) : (
+                                {data.email == userEmail ? (null) : (
                                     <>
-                                        {data.groupMembers.length === maxNumOfMembers ? (null) : (
+                                        {data.groupMembers.length == maxNumOfMembers ? (null) : (
                                     <>
 
-                                        {data.status === 'Approved' ?  null : 
+                                        {data.status == 'Approved' ?  null : 
                                             <section style={{textAlign: 'center'}}>
                                                 {data.groupMembers.some((member) => member.email === userEmail) ? (
                                                     null

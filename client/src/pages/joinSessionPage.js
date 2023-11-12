@@ -80,12 +80,12 @@ function Join(){
                 <input 
                     id='input'
                     type="text" 
-                    style={{ fontFamily: 'Gabarito' }}
+                    style={{ fontFamily: 'Gabarito', backgroundColor: '#E8F0FE' }}
                     class="form-control" placeholder="Enter Session code..." aria-label="Recipient's username" aria-describedby="button-addon2"
                     value={inputValue}
                     onChange={handleInputChange}
                 />
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2" style={{ fontFamily: 'Gabarito', backgroundColor: '#E2E7FF'}}
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2" style={{ fontFamily: 'Gabarito', backgroundColor: '#5F53C8', color: 'white'}}
                     onClick={() => checkSessionId(inputValue)}>
                         Join
                 </button>

@@ -21,7 +21,7 @@ app.use(bodyParser.json({ limit: "100mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const corsOptions = {
-  origin: frontend,//'http://localhost:3000',
+  origin: frontend, //'http://localhost:3000',
   credentials: true,
   optionSuccessStatus: 200,
 };
@@ -145,10 +145,10 @@ io.on("connect", (socket) => {
 
   socket.on('sendEmail', (email, data) => {
     console.log("should send email");
-    const emailArray = data.data.groupMembers.map((member) => `${member.email} (${member.role})`);
+    const emailArray = data.data.groupMembers.map((member) => `Name: ${member.userName}, Email: ${member.email}, Role:${member.role}`);
     const commaSeparatedEmails = emailArray.join(', ');
     let members = commaSeparatedEmails
-    approvePitchRoute.sendLoginEmail(email, data.data.name, data.data.disc, members);
+    approvePitchRoute.sendLoginEmail(email, data.data.name, data.data.disc, data.data.groupMembers);
   })
 
   socket.on('sendAdminEmail', (email, room) => {
@@ -159,7 +159,8 @@ io.on("connect", (socket) => {
       let pitchInfo =  approvedPitches.map((pitch) => ({
         name: pitch.name,
         disc: pitch.disc,
-        members: pitch.groupMembers.map((member) => `${member.userName} role: ${member.role} email: ${member.email}`)
+       //members: pitch.groupMembers.map((member) => `Name: ${member.userName}, Student Number: ${member.studentNumber}, role: ${member.role} email: ${member.email}`)
+        members: pitch.groupMembers
       }));
       console.log(pitchInfo);
       

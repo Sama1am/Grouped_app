@@ -1,10 +1,12 @@
 import { React, useContext } from "react";
 import { FiServer } from 'react-icons/fi'
 import { FaRegCheckCircle } from 'react-icons/fa';
-import { BsWindowDock, BsPeople } from 'react-icons/bs'
+import { BsWindowDock, BsPeople, BsCardChecklist } from 'react-icons/bs'
 import { socket } from "../../context/socketContext";
 import { AdminContext } from '../../context/adminContext';
 import './sideBar.css'
+import { RxCrossCircled } from 'react-icons/rx'
+
 
 function SideBar({ admin, setActiveComponent, roomCode, maxNumOfMembers, redirectRoute}) {
   const { userEmail } = useContext(AdminContext);
@@ -70,10 +72,10 @@ function SideBar({ admin, setActiveComponent, roomCode, maxNumOfMembers, redirec
                     {admin ? (
                       <section class="align-items-center" style={{alignItems: 'center', width: '90%', paddingBottom: '5%'}}>
                         <button class="col" className='button-46 button-normal' style={{width: '100%'}}
-                          onClick={generatePdf}>Generate group list</button>
+                          onClick={generatePdf}>< BsCardChecklist size={20} style={{marginRight: '5px'}}/>Generate group list</button>
                         <br />
                         <button class="col" className='button-46 button-red' style={{width: '100%'}}
-                          onClick={endSession}>End session</button>
+                          onClick={endSession}> <RxCrossCircled size={20} style={{marginRight: '5px'}}/>End session</button>
                       </section>
                     ) : null}
         </section>

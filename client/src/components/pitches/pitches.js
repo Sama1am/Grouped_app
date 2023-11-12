@@ -8,7 +8,7 @@ import { AiOutlinePlusCircle } from 'react-icons/ai';
 import './pitches.css';
 
 function Pitches(){
-    const { isAdmin,  userName} = useContext(AdminContext);
+    const { isAdmin,  userName, studentNumber} = useContext(AdminContext);
     const { pitchList, addPitch, myPitch, sessionName } = usePitchList();
     const [createPicthState, setCreatePicthState] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -40,17 +40,18 @@ function Pitches(){
         <>
             <section id='Pitches'class="d-flex flex-column col align-items-center"  aria-hidden="true"
                 style={{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
-                    <PitchCreationTab trigger ={createPicthState} setTrigger={setCreatePicthState} style={{height: '85%'}}/>
-
-                    <section class='row'>
-                        {sessionName === '' ? (
-                            <h1 class="card-title placeholder-glow row" style={{paddingTop: '3%', width: '30%'}}>
-                                <span class="placeholder col-10"></span>
-                            </h1>
-                        ) : (
-                            <h1 class='row' style={{paddingTop: '3%', color: '#36494E'}}>{sessionName}</h1>
-                        )}
-                    </section>
+                    
+                        <PitchCreationTab trigger={createPicthState} setTrigger={setCreatePicthState} style={{ height: '85%' }}/>
+                    
+                        <section className='row text-center row'>
+                            {sessionName === '' ? (
+                                <h1 className="card-title placeholder-glow" style={{ paddingTop: '3%', width: '60%' }}>
+                                    <span className="placeholder"></span>
+                                </h1>
+                            ) : (
+                                <h1 className='col-12' style={{ paddingTop: '3%', color: '#36494E' }}>{sessionName}</h1>
+                            )}
+                        </section>
                     
                     <section class="row d-flex flex-column align-items-center" className='Main' style={{ width: '100%', padding: '1%' }}>
                         <section id='pitchSection' class="col-8 mx-auto" style={{ width: '70%', height: '100%' }}>
@@ -90,7 +91,6 @@ function Pitches(){
                         )}
                         </>
                     )}
-
             </section>
         </>
     )

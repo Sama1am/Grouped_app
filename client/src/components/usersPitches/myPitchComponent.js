@@ -24,17 +24,17 @@ function MyPitchComp(data, room){
                         </section>
                         <section class='col-4 d-flex align-items-center justify-content-end'>
                             {data.data.status === 'pending' ? (
-                            <section class='text-align-center btn disabled' style={{backgroundColor: '#FFC28A', padding: '5%', fontWeight: 'bold'}} >
+                            <section class='text-align-center btn disabled' style={{backgroundColor: '#F4D07A', padding: '5%', fontWeight: 'bold'}} >
                                 <GoCircle size={18}/> {data.data.status}
                             </section>):
                                 <>
                                     {data.data.status === 'Approved' ? (
-                                        <section class='text-align-center btn disabled' style={{backgroundColor: '#A0F5CE', padding: '5%', fontWeight: 'bold'}} >
+                                        <section class='text-align-center btn disabled' style={{backgroundColor: '#AFD8D0', padding: '5%', fontWeight: 'bold'}} >
                                             <CgCheckO size={18}/> {data.data.status}
                                         </section>) : (
                                             <> 
                                                 {data.data.status === 'Denied' ? (
-                                                <section class='text-align-center btn disabled' style={{backgroundColor: '#FFBBBC', padding: '5%', fontWeight: 'bold'}} >
+                                                <section class='text-align-center btn disabled' style={{backgroundColor: '#F2C8C8', padding: '5%', fontWeight: 'bold'}} >
                                                     <RxCrossCircled size={18}/> {data.data.status}
                                                 </section>) : (null)}
                                             </>
@@ -51,7 +51,7 @@ function MyPitchComp(data, room){
 
                     <ul class="list-group list-group-flush">
                         <ul class="list-group">
-                            <li class="list-group-item" aria-current="true" style={{fontWeight: 'bold', background: 'linear-gradient(76deg, rgba(97,131,229,0.5) 0%, rgba(182,151,245,0.5) 100%)'}}>Members:</li>
+                            <li class="list-group-item" aria-current="true" style={{fontWeight: 'bold', backgroundColor: '#5F53C8', color: 'white'}}>Members:</li>
                             {data.data.groupMembers.map((member, index) => (
                                 <li class="list-group-item" key={index}>
                                     <span style={{ marginRight: '10px' }}>
@@ -66,9 +66,9 @@ function MyPitchComp(data, room){
                     </ul>
                     <br />
                     <section class='row d-flex justify-content-center align-items-center'>
-                        <section class='col-4'>
+                        <section class='col-3'>
                             <button type="button" className='button-myPitch' style={{alignSelf: 'center'}} onClick={() => {deletePitch(data.data.key, roomCodeC)}}>
-                                <ImBin />
+                                <ImBin size={20}/>
                             </button>
                         </section>        
                     </section>

@@ -15,18 +15,40 @@
 
 .button-approve {
     align-items: center;
-    background-color: #899dff8f;
-    border: 1px solid #495cbb;
+    background-color: #AFD8D0;
+    border: none;
     border-radius: 16px;
     box-sizing: border-box;
-    color: #000000;
+    color: rgb(34, 34, 34);
     cursor: pointer;
     display: flex;
     font-size: 10px;
     justify-content: center;
-    line-height: 30px;
+    line-height: 35px;
     max-width: 50%;
-    padding: 6px 8px;
+    padding: 18px 16px;
+    text-decoration: none;
+    transition: all .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
+  }
+
+  .button-deny {
+    align-items: center;
+    background-color: #F2C8CA;
+    border: none;
+    border-radius: 16px;
+    box-sizing: border-box;
+    color: rgb(34, 34, 34);
+    cursor: pointer;
+    display: flex;
+    font-size: 16px;
+    justify-content: center;
+    line-height: 35px;
+    max-width: 50%;
+    padding: 18px 16px;
     text-decoration: none;
     transition: all .2s;
     user-select: none;
@@ -41,20 +63,29 @@
   }
   
   .button-normal:hover {
-    background-color: #acc18a8e;
-    border-color: rgba(0, 0, 0, 0.19);
+    background-color: #80bbaf;
+    color: rgb(34, 34, 34);
+    
   }
   
   .button-red:hover{
-      background-color: #e1a3a38e;
-      border-color: rgba(0, 0, 0, 0.19);
+      background-color: #e0a0a3;
+      color: rgb(34, 34, 34);
   }
   
   @media (min-width: 768px) {
     .button-approve {
       font-size: 16px;
       min-width: 100px;
-      padding: 14px 16px;
+      padding: 18px 16px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .button-deny {
+      font-size: 16px;
+      min-width: 100px;
+      padding: 18px 16px;
     }
   }
 

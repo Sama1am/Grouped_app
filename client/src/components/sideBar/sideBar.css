@@ -4,7 +4,7 @@
 }
 .button-46 {
   align-items: center;
-  background-color: #899CFF;
+  background-color: #5F53C8;
   border: none;
   border-radius: 16px;
   box-sizing: border-box;
@@ -31,12 +31,14 @@
 }
 
 .button-normal:hover {
-  background-color: #acc18a8e;
+  background-color: #AFD8D0;
+  color: #262626;
   border-color: rgba(0, 0, 0, 0.19);
 }
 
 .button-red:hover{
-    background-color: #e1a3a38e;
+    background-color: #F2C8CA;
+    color: #262626;
     border-color: rgba(0, 0, 0, 0.19);
 }
 

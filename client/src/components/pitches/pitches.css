@@ -7,15 +7,14 @@
 
 .create-pitchbtn{
     border-radius: 100%;
-    
-    border: 1px solid #DFDFDF;
+    background-color: #5F53C8;
+    border: 1px solid #3e33a4;
     padding: 10px;
-    background: rgb(97,131,229);
-    background: linear-gradient(76deg, rgba(97,131,229,1) 0%, rgba(182,151,245,1) 100%);
+   
 }
 
 .create-pitchbtn:hover{
-    background-color: #899dff94
+    background-color: #8074e7
 }
 
 hr.thick{

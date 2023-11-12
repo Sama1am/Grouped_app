@@ -9,6 +9,7 @@ export const AdminProvider = ({ children }) => {
   const [userName, setUserName] = useState('');
   const [roles, setRoles] = useState([]);
   const [token, setToken] = useState();
+  const [studentNumber, setStudentNuber] = useState();
 
   const value = {
     isAdmin,
@@ -20,7 +21,10 @@ export const AdminProvider = ({ children }) => {
     roles,
     setRoles,
     userName,
-    setUserName
+    setUserName,
+    studentNumber,
+    setStudentNuber
+
   };
 
 

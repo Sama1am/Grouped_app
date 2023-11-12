@@ -1,17 +1,17 @@
 .button-myPitch {
     align-items: center;
-    background-color: #8A9CFF;
-    border: 1px solid #DFDFDF;
+    background-color: #ecb4b7;
+    border: none;
     border-radius: 16px;
     box-sizing: border-box;
-    color: #ffffff;
+    color: rgb(34, 34, 34);
     cursor: pointer;
     display: flex;
     font-size: 18px;
     justify-content: center;
-    line-height: 28px;
+    line-height: 32px;
     max-width: 100%;
-    padding: 8px 8px;
+    padding: 12px 8px;
     text-decoration: none;
     transition: all .2s;
     user-select: none;
@@ -23,11 +23,11 @@
   .button-myPitch:active,
   .button-myPitch:hover {
     outline: 0;
-    background-color: rgba(255, 255, 255, 0.26);
+    background-color: #e59fa2;
   }
   
   .button-myPitch:hover {
-    background-color: #899dff94;
+    background-color: #e59fa2;
     border-color: rgba(0, 0, 0, 0.19);
   }
   
@@ -35,6 +35,6 @@
     .button-myPitch {
       font-size: 18px;
       min-width: 200px;
-      padding: 8px 8px;
+      padding: 12px 8px;
     }
   }

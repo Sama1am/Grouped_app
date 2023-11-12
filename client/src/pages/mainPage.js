@@ -8,7 +8,6 @@ function Main(){
     const serverUrl = process.env.REACT_APP_APILINK;
     const searchParams = new URLSearchParams(window.location.search);
     const [token, setToekn] = useState(searchParams.get('token'));
-    const [loading, setLoading] = useState(true);
 
     if(token)
     {
@@ -38,7 +37,7 @@ function Main(){
                     console.log("from server: " + data.isAdmin);
                     await setIsAdmin(true);
                     sessionStorage.setItem('admin', true);
-                    setLoading(false);
+                    
                     console.log("from context:" + isAdmin);
                 }
                 else if(data.isAdmin === false)
@@ -46,7 +45,7 @@ function Main(){
                     console.log("from server: " + data.isAdmin);
                     await setIsAdmin(false);
                     sessionStorage.setItem('admin', false);
-                    setLoading(false);
+                    
                     console.log("from context:" + isAdmin);
                 }
                 else if(response.status === 500){
@@ -91,16 +90,7 @@ function Main(){
     useEffect(() => {
         if(isAdmin === undefined)
         {
-            console.log("SETTING ADMIN")
-            const isAdminFromSessionStorage = sessionStorage.getItem('admin');
-            if(isAdminFromSessionStorage){
-                setIsAdmin(isAdminFromSessionStorage);
-                setLoading(false);
-                console.log("SET ADMIN FROM SESSION STORAGE")
-            }else{
-                getAdmin(token);
-                console.log("GETTING ADMIN FROM SERVER")
-            }
+            getAdmin(token);
         }
 
         if(userEmail === '')
@@ -112,14 +102,27 @@ function Main(){
 
     return(
         <>
-            <section style={{justifyContent: 'center', position: 'absolute', width: '100%', height: '100vh', backgroundColor: '#E7EAFB', overflow: 'hidden'}}>
-                <section className='bg-shape opcaity bg-blur bg-blue'></section>''
-                <section className='bg-shape opcaity bg-blur bg-green' style={{textAlign: 'center'}}></section>
-                <section className='bg-shape-sml opcaity bg-blur bg-pink top-right-corner'></section>
-                <section className='bg-shape-sml opcaity bg-blur bg-blue bottom-right-corner'></section>
+           <section style={{ position: 'absolute', width: '100%', height: '100vh', backgroundColor: '#b9bee1', overflow: 'hidden'}}>
+                <section>
+                    <section className='blob bg-purple idk  bg-blur'></section>
+                    <section className='blob-m bg-green idk-1  bg-blur'></section>
+                    <section className='blob-s bg-pink idk-2 blur'></section>
+                </section>
+
+                <section>
+                    <section className='two-blob bg-purple ps bg-blur-2'></section>
+                    <section className='two-blob-2 bg-green ps-1  bg-blur-2'></section>
+                    <section className='two-blob-3 bg-pink ps-2 blur-2'></section>
+                </section>
+
+                <section>
+                    <section className='three-blob two-ps bg-purple sec-blur'></section>
+                    <section className='three-blob-2 two-ps-2 bg-green sec-blur'></section>
+                    <section className='three-blob-3 two-ps-3 bg-pink sec-blur-2'></section>
+                </section>
             </section>
 
-            {loading ? (
+            {isAdmin === undefined ? (
                 <div class="spinner-border" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
@@ -133,8 +136,7 @@ function Main(){
                             </section>
                             <h1 class="text-center card-title" style={{ fontFamily: 'Gabarito' }}>Grouped</h1>
                                 <br />
-                                <br />
-                                {isAdmin === true ? (
+                                {isAdmin == true ? (
                                 <>
                                     <Create />
                                     <br />
@@ -144,7 +146,6 @@ function Main(){
 
                                 <Join />
                                     <br />
-                            
                         </div>
                     </section>
 

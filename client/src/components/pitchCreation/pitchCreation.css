@@ -26,7 +26,7 @@
 
 .button-pitch {
     align-items: center;
-    background-color: #8A9CFF;
+    background-color: #5F53C8;
     border: none;
     border-radius: 16px;
     box-sizing: border-box;
@@ -44,17 +44,17 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     width: 100%;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 2px rgba(55, 55, 55, 0.3);
   }
   
   .button-pitch:active,
   .button-pitch:hover {
     outline: 0;
-    background-color: rgba(255, 255, 255, 0.26);
+    background-color: #8074e7;
   }
   
   .button-pitch:hover {
-    background-color: #899dff94;
+    background-color: #8074e7;
   }
   
   @media (min-width: 768px) {

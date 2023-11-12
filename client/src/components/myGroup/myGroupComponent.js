@@ -23,7 +23,7 @@ function MyGroupComp(data, room){
                     <section class='row'>
                         <h5 class="card-header" className="col-md-9"
                             style={{fontFamily: 'Gabarito', fontSize: '30px'}}>{data.data.name}</h5>
-                        <section className="col-md-3 d-flex justify-content-end">
+                        <section className="col-md-3 d-flex justify-content-end" style={{fontWeight: 'bold'}}>
                             {data.data.status === 'Approved' ? (<ApprovedComp />) : (null)}
                         </section>
                     </section>
@@ -33,7 +33,7 @@ function MyGroupComp(data, room){
                     </section>
                     <ul class="list-group list-group-flush">
                         <ul class="list-group">
-                            <li class="list-group-item" aria-current="true" style={{fontWeight: 'bold', background: 'linear-gradient(76deg, rgba(97,131,229,0.5) 0%, rgba(182,151,245,0.5) 100%)'}}>Members:</li>
+                            <li class="list-group-item" aria-current="true" style={{fontWeight: 'bold', backgroundColor: '#4F43B3', color:'white'}}>Members:</li>
                             {data.data.groupMembers.map((member, index) => (
                                 <li class="list-group-item" key={index}>
                                     <span style={{ marginRight: '10px' }}>
@@ -48,9 +48,14 @@ function MyGroupComp(data, room){
                     </ul>
                     <br />
                     {data.data.status === 'Approved'? (null) : (
-                        <button type="button" className='button-myGroup' onClick={removeSelf}>
-                            <BsFillPersonXFill size={22}/> <a style={{marginLeft: '8px'}}>Leave group</a>
-                        </button>
+                        <section class='row d-flex justify-content-center align-items-center'> 
+                            <section class='col-3'>
+                                <button type="button" className='button-myGroup' onClick={removeSelf}>
+                                    <BsFillPersonXFill size={22}/> <a style={{marginLeft: '8px'}}>Leave</a>
+                                </button>
+                            </section> 
+                        </section>
+                        
                     )}
                     
                 </section>

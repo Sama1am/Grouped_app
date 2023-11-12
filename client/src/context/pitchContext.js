@@ -29,23 +29,15 @@ export function PitchListProvider({ children }) {
     const res = checkPitchData(data, pitchList);
     if(res === 200) {
       setPitchList((prevPitchList) => [...prevPitchList, data]);
-      if(data.email.trim() === userEmail.trim()){
-        setMyPitch(myPitch +1);
+      if(data.email.trim() == userEmail.trim()){
+        console.log("is my pitch!");
+        let temp = myPitch + 1;
+        setMyPitch(temp);
       }
     } else if(res === 400){
       console.log("Pitch already exists"); 
     }
   };
-
-  function checkIfAuthor(data){
-    const individualPitches = [].concat(...data);
-    for(const pitch of individualPitches){
-      if(pitch.email === userEmail){
-        console.log("found picth you are author of!")
-        setMyPitch(myPitch +1);
-      }
-    }
-  }
 
   function checkPitchData(data, pitchList){
 
@@ -109,13 +101,13 @@ export function PitchListProvider({ children }) {
     }
   }
 
-  function addGroupMember(email, role, userName, key, room){
+  function addGroupMember(email, role, userName, key, room, studentNumber){
     if(email === undefined || email === ''){
       console.log("EMAIL IS UNDEFINED!");
       return;
     } 
 
-    const newMember = { email, role, userName };
+    const newMember = { email, role, userName, studentNumber };
 
     setPitchList(prevPitchList => {
       const updatedPitches = prevPitchList.map(pitch => {
@@ -268,8 +260,7 @@ export function PitchListProvider({ children }) {
       setMyPitch,
       myPitch,
       sessionName,
-      setSessionName,
-      checkIfAuthor
+      setSessionName
       }}>
 
       {children}

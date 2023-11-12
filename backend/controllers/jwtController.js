@@ -35,7 +35,7 @@ const verifyToken = async (token) => {
     issuer: "grouped",
     subject: "Auth",
     audience: "user",
-    expiresIn: "2h",
+    expiresIn: "1h",
     algorithm: ["RS256"],
   };
 
@@ -45,6 +45,7 @@ const verifyToken = async (token) => {
     if (decoded.iss === "grouped") {
       return decoded;
     }
+       
   } catch (error) {
     console.error("Token verification failed:", error);
     return false;
@@ -72,7 +73,7 @@ async function authenticateToken(req, res, next) {
   }
   else
   {
-      return res.status(403).json({ message: 'Forbidden' });
+      return res.status(403).json({ redirectTo: '/' });
   }
 
 };

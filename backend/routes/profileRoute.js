@@ -53,7 +53,8 @@ profileRoute.post("/updateProfile", jwt.authenticateToken, async function (req, 
         let role = req.body?.role;
         let name = req.body?.name;
         let email = req.user?.email;
-        console.log(req.user);
+        let studentNumber = req.body?.studentNumber;
+        console.log("STUDENT NUMBER: ", req.body?.studentNumber);
 
         if(!email)
         {
@@ -68,6 +69,11 @@ profileRoute.post("/updateProfile", jwt.authenticateToken, async function (req, 
         if(role)
         {
             changeRole(role, email);
+        }
+
+        if(studentNumber){
+            console.log("SETTING STUDENT NUMBER ON DB");
+            setStudentNumber(studentNumber, email);
         }
         
     }
@@ -181,6 +187,28 @@ async function changeName(name, email){
     catch (err)
     {
         console.log("on error occured when changing name: " + err);
+    }
+}
+
+async function setStudentNumber(studentNumber, email){
+    try
+    {
+        const updateStatement = `
+        UPDATE USERS
+        SET student_number = @student_number
+        WHERE email = @email;
+        `;
+
+        result = await db.excuteQuery(updateStatement, {
+            student_number: studentNumber,
+            email: email
+        });
+        
+        console.log("RESULT IS : ", result);
+    }
+    catch (err)
+    {
+        console.log("on error occured when changing student: " + err);
     }
 }
 

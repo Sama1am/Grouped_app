@@ -1,10 +1,10 @@
 .button-myGroup {
     align-items: center;
-    background-color: #8A9CFF;
-    border: 1px solid #DFDFDF;
+    background-color: #ecb4b7;
+    border: none;
     border-radius: 16px;
     box-sizing: border-box;
-    color: #ffffff;
+    color: rgb(34, 34, 34);
     cursor: pointer;
     display: flex;
     font-size: 12px;
@@ -18,17 +18,17 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     width: 100%;
+    
   }
   
   .button-myGroup:active,
   .button-myGroup:hover {
     outline: 0;
-    background-color: rgba(255, 255, 255, 0.26);
+    background-color: #e59fa2;
   }
   
   .button-myGroup:hover {
-    background-color: #899dff94;
-    border-color: rgba(0, 0, 0, 0.19);
+    background-color: #e59fa2;
   }
   
   @media (min-width: 768px) {
