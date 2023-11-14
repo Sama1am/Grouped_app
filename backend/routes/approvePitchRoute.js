@@ -106,6 +106,7 @@ function generatePDF(data) {
     // Add the message to the PDF
     doc.fontSize(12).text(`Group: ${pitch.name}`, 100, yPosition);
     doc.fontSize(12).text(`Description: ${pitch.disc}`, 100, yPosition + lineHeight);
+    yPosition += lineHeight;
     if (Array.isArray(pitch.members)) {
       pitch.members.forEach((groupMember) => {
         // Assuming groupMember is an object with properties like 'name', 'email', etc.

@@ -21,7 +21,7 @@ app.use(bodyParser.json({ limit: "100mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const corsOptions = {
-  origin: frontend, //'http://localhost:3000',
+  origin: frontend, 
   credentials: true,
   optionSuccessStatus: 200,
 };
@@ -93,7 +93,7 @@ server.listen(port, () => {
 
 const io = socketIo(server,{
   cors: {
-    origin: frontend, //'http://localhost:3000'
+    origin: frontend,  
   }
 });
 

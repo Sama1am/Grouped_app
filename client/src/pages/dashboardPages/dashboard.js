@@ -40,7 +40,7 @@ function Dashboard() {
     const [profileState, setProfileState] = useState(true);
     const [activeComponent, setActiveComponent] = useState("pitches");
 
-    const redirectRoute = `${baseUrl}`;
+    const redirectRoute = `${baseUrl}/main`;
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const token = sessionStorage.getItem('accessToken');
@@ -233,6 +233,7 @@ function Dashboard() {
 
         socket.on('redirectUrl', (redirectRoute) => {
             resetPitchList();
+            sessionStorage.setItem('profileCreated', false);
             //sessionStorage.clear();
             window.location.href = redirectRoute;
         });
