@@ -43,10 +43,10 @@ function Pitches(){
                     
                         <PitchCreationTab trigger={createPicthState} setTrigger={setCreatePicthState} style={{ height: '85%' }}/>
                     
-                        <section className='row text-center'>
+                        <section className='row text-center d-flex flex-column align-items-center' style={{width: '100%'}}>
                             {sessionName === '' ? (
                                 <div className="card-title placeholder-glow" style={{ paddingTop: '3%', width: '60%' }}>
-                                    <span className="placeholder"></span>
+                                    <span className="placeholder col-6" style={{height: '100%'}}></span>
                                 </div>
                             ) : (
                                 <h1 className='col-12' style={{ paddingTop: '3%', color: '#36494E' }}>{sessionName}</h1>

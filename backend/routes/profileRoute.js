@@ -79,7 +79,7 @@ profileRoute.post("/updateProfile", jwt.authenticateToken, async function (req, 
     }
     catch(e)
     {
-        console.log("Error: " + e);
+        console.log("Error when creating profile: " + e);
     }
 });
 
@@ -115,7 +115,7 @@ profileRoute.get("/getAdmin", jwt.authenticateToken, async function (req, res){
     }
     catch(e)
     {
-        console.log(e);
+        console.log('error when getting admin', e);
     }
 });
 
@@ -126,7 +126,7 @@ profileRoute.get('/getEmail', jwt.authenticateToken, async function (req, res){
     }
     catch(e)
     {
-        console.log(e);
+        console.log('error when getting email', e);
     }
 })
 
