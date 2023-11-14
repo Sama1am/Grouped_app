@@ -40,7 +40,7 @@ function Dashboard() {
     const [profileState, setProfileState] = useState(true);
     const [activeComponent, setActiveComponent] = useState("pitches");
 
-    const redirectRoute = `${baseUrl}/main`;
+    const redirectRoute = `${baseUrl}`;
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const token = sessionStorage.getItem('accessToken');
