@@ -23,10 +23,6 @@ function Pitches(){
 
     }, [addPitch, socket, loading, pitchList, myPitch]);
 
-    function checkPitchList(){
-        console.log(pitchList);
-    }
-
     function receivePitchHandler(data){
         console.log("receided pitch: ", data);
         if(pitchList.some((pitch) => pitch.key === data.key)){
@@ -80,7 +76,7 @@ function Pitches(){
                         </section>
                     ) : (
                         <>
-                        {myPitch >= 1 ? (null) : (
+                        {myPitch >= 1 ? (<></>) : (
                             <section class="col align-self-end justify-content-end" style={{position: 'fixed', bottom: '2%', right: '1%'}}>
                                 <button class="p-2 position-absolute bottom-0 end-0" 
                                     className='create-pitchbtn'

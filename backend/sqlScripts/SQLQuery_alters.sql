@@ -31,3 +31,8 @@ GO
 
 SELECT * FROM USERS
 GO
+
+UPDATE USERS
+SET admin = 1 
+WHERE email = 'groupeda7@gmail.com';
+GO

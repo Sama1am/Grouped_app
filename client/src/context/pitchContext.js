@@ -224,13 +224,15 @@ export function PitchListProvider({ children }) {
     setPitchList((prevPitchList) => {
       const updatedPitches = prevPitchList.filter((pitch) => pitch.key !== key);
       // Optionally, you can emit an event to notify the server or perform any other actions
+      let temp = myPitch - 1;
+      setMyPitch(temp);
       return updatedPitches;
     });
+    
 
     console.log(`Pitch with key ${key} deleted.`);
     socket.emit('deletePitch', key, room);
-    let temp = myPitch - 1;
-    setMyPitch(temp);
+    
   }
 
   function updateDeletedPitch(key){
