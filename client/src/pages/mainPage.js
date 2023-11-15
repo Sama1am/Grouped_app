@@ -98,7 +98,7 @@ function Main(){
             getUserEmail();
         } 
 
-        if(!isAdmin && sessionStorage.getItem('profileCreated') == true){
+        if(!isAdmin && sessionStorage.getItem('profileCreated') === true){
             sessionStorage.setItem('profileCreated', false)
         }
         
